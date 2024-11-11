@@ -47,42 +47,44 @@ const Carousels = ({ options }) => {
   ]
 
   return (
-    <div className={`slider-container`}>
+    <div className={`slider-container w-full`}>
       <Slider {...settings} className={`${options != '1' ? 'bestseller' : ''}`}>
         {
           options === '1' ?
             carouselImg?.map((item, idx) => {
               return (
-                <div key={idx} className="px-2 relative w-full h-full">
-                  <div className="absolute w-[95.5%] h-full lg:w-[93%] md:w-[93%] xs:w-[95%] md:h-[50%] opacity-0 hover:opacity-100 group inset-[8px] hover:translate-y-7 lg:hover:translate-y-7 md:hover:translate-y-[178px] xs:hover:translate-y-[225px] cursor-pointer transition-all duration-700">
-                    <div className="absolute bottom-[115px] right-0 w-full">
-                      <div className="border pt-3 w-full bg-[#ffffff]">
-                        {sub?.map((item, index) => {
-                          return (
-                            <div key={index} className="p-2 border-b-2 flex justify-end items-center gap-3 text-slate-500 w-full hover:text-black hover:border-black">
-                              {item?.name}
-                              <div className={item?.id === 4 ? ' hover:text-red-700' : ''}>
-                                {item.icon}
+                <div key={idx} className="w-full">
+                  <div className="relative w-[98%] h-full">
+                    <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px] md:hover:translate-y-[127px] xs:hover:translate-y-[242px] cursor-pointer  duration-700">
+                      <div className="absolute top-0 right-0 w-full">
+                        <div className=" w-full bg-[#ffffff]">
+                          {sub?.map((item, index) => {
+                            return (
+                              <div key={index} className="p-2 border-b-2 flex justify-end items-center gap-3 text-slate-500 w-full hover:text-black hover:border-black">
+                                {item?.name}
+                                <div className={item?.id === 4 ? ' hover:text-red-700' : ''}>
+                                  {item.icon}
+                                </div>
                               </div>
-                            </div>
-                          )
-                        })}
+                            )
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  { /* hình*/}
-                  <img key={idx} src={item?.img} alt="" />
-                  <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
-                    <div className="flex justify-between items-center">
-                      <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'}`}>
-                        {item?.name}
+                    { /* hình*/}
+                    <img key={idx} src={item?.img} alt="" className="w-full" />
+                    <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
+                      <div className="flex justify-between items-center">
+                        <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'}`}>
+                          {item?.name}
+                        </div>
+                        <div className="text-slate-400">
+                          $60
+                        </div>
                       </div>
-                      <div className="text-slate-400">
-                        $60
-                      </div>
+                      <div className="mt-2 text-slate-400">color:black</div>
                     </div>
-                    <div className="mt-2 text-slate-400">color:black</div>
                   </div>
                 </div>
               )
@@ -90,36 +92,42 @@ const Carousels = ({ options }) => {
             :
             (options != 2 ? offers : bestSellerImg)?.map((item, index) => {
               return (
-                <div className="px-2 relative" key={index}>
-                  <div className="absolute w-[95.5%] lg:w-[93%] md:w-[93%] md:h-[50%] xs:w-[95%]  h-full opacity-0 hover:opacity-100 group inset-[8px] hover:translate-y-2 md:hover:translate-y-[160px] xs:hover:translate-y-[212px]  cursor-pointer transition-all duration-700">
-                    <div className="absolute bottom-[115px] right-0 w-full">
-                      <div className="border pt-3 w-full bg-[#ffffff]">
-                        {sub?.map((item, index) => {
-                          return (
-                            <div key={index} className="p-2 border-b-2 flex justify-end items-center gap-3 text-slate-500 w-full hover:text-black hover:border-black">
-                              {item?.name}
-                              <div className={item?.id === 4 ? ' hover:text-red-700' : ''}>
-                                {item.icon}
-                              </div>
-                            </div>
-                          )
-                        })}
+                <div className="w-full">
+                  <div className=" relative" key={index}>
+                    <div className="relative w-[98%] h-full">
+                      <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[170px] lg:hover:translate-y-[132px] md:hover:translate-y-[152px] xs:hover:translate-y-[160px] cursor-pointer  duration-700">
+                        <div className="absolute top-0 right-0 w-full">
+                          <div className="border w-full bg-[#ffffff]">
+                            {sub?.map((item, index) => {
+                              return (
+                                <div key={index} className="p-2 border-b-2 flex justify-end items-center gap-3 text-slate-500 w-full hover:text-black hover:border-black">
+                                  {item?.name}
+                                  <div className={item?.id === 4 ? ' hover:text-red-700' : ''}>
+                                    {item.icon}
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      <img key={index} src={item?.img} alt="" />
+                      <div className="border p-6 bg-[#ffffff]">
+                        <div className="flex justify-between items-center">
+                          <div className={`font-bold ${(item?.name)?.length > '15' && 'lg:truncate'}`}>
+                            {item?.name}
+                          </div>
+                          <div className="text-slate-400">
+                            $70
+                          </div>
+                        </div>
+                        <div className="mt-2 text-slate-400">color:black</div>
                       </div>
                     </div>
-                  </div>
-                  <img key={index} src={item?.img} alt="" />
-                  <div className="border p-6 bg-[#ffffff]">
-                    <div className="flex justify-between items-center">
-                      <div className={`font-bold ${(item?.name)?.length > '15' && 'lg:truncate'}`}>
-                        {item?.name}
-                      </div>
-                      <div className="text-slate-400">
-                        $60
-                      </div>
-                    </div>
-                    <div className="mt-2 text-slate-400">color:black</div>
                   </div>
                 </div>
+
               )
             })
         }

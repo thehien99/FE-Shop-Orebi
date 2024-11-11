@@ -21,11 +21,14 @@ const Header = () => {
     { idx: 5, name: 'Login' },
   ]
   const { IoMenu } = icon
-  const [active, setActive] = useState()
+  const navigation = useNavigate()
+  const handleHome = () => {
+    navigation(Router.home)
+  }
   return (
     <div className='mx-6 p-6'>
       <div className='w-full h-full flex justify-between items-center xs:justify-between'>
-        <div>
+        <div onClick={handleHome}>
           <img src={image} alt="" />
         </div>
         <div className='text-lg text-slate-500 font-medium '>
@@ -40,9 +43,9 @@ const Header = () => {
                 <SheetHeader>
                   {menuHeader?.map((item) => {
                     return <div key={item}>
-                      <Link to={`${Router.shop}`} className={`hover:text-black hover:underline  ${item?.idx === 1 && 'text-black underline'}`} >
+                      <NavLink to={item?.name} className={`hover:text-black hover:underline  ${item?.idx === 1 && 'text-black underline'}`} >
                         {item?.name}
-                      </Link>
+                      </NavLink>
                     </div>
                   })}
                 </SheetHeader>

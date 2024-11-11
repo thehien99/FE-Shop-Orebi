@@ -9,7 +9,9 @@ import {
 const SelectShop = ({ title, sort }) => {
   return (
     <div className='flex items-center gap-1 '>
-      <div>{title}</div>
+      <div className='xs:text-sm'>
+        {title}
+      </div>
       <Select>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Final Offer" />

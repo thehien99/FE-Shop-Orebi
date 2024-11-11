@@ -14,7 +14,7 @@ const ShopSort = () => {
     setActive(!active)
   }
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center xs:flex-col xs:gap-4' >
       <div onClick={handleActive} className='cursor-pointer flex gap-3 items-center'>
         <HiViewGrid className={`text-3xl ${!active ? 'bg-black text-white' : 'bg-white border text-slate-400'}`} />
         <MdViewList className={`text-3xl ${active ? 'bg-black text-white' : 'bg-white border text-slate-400'}`} />

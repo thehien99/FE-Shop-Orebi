@@ -14,7 +14,7 @@ const ContentShop = () => {
     { id: 1, img: img, name: 'Áo thun X' },
     { id: 2, img: img, name: 'Quần jean Y' },
     { id: 3, img: img, name: 'Áo khoác Z' },
-    { id: 4, img: img, name: 'Giày thể thao Aaaaaaa' },
+    { id: 4, img: img, name: 'Giày thể thao Aaaaaaafgdddddddddasdasdasdasdddddd' },
     { id: 5, img: img, name: 'Mũ thể thao B' },
     { id: 6, img: img, name: 'Đồng hồ C' },
     { id: 7, img: img, name: 'Áo sơ mi D' },
@@ -30,7 +30,7 @@ const ContentShop = () => {
   ];
   const [data, setData] = useState([])
   return (
-    <div className='productShop flex flex-col gap-10'>
+    <div className='productShop flex flex-col gap-10 w-full h-full'>
       <ShopSort />
       <ListProduct allProducts={data} />
       <div className='pagination'>

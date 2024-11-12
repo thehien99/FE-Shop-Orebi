@@ -70,13 +70,10 @@ module.exports = {
     			max: '1024px'
     		},
     		md: {
-    			max: '768px'
-    		},
-    		sm: {
-    			max: '640px'
+    			max: '767px'
     		},
     		xs: {
-    			max: '431px'
+    			max: '415px'
     		}
     	}
     },

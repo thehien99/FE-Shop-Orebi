@@ -34,6 +34,10 @@ const Paginations = ({ allProducts, setData }) => {
   }
   useEffect(() => {
     setData(currentProduct)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   }, [currentPage])
 
   return (

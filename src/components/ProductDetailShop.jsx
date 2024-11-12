@@ -45,7 +45,7 @@ const ProductDetailShop = ({ img, name }) => {
     //   </div>
     // </div >
 
-    <div className='border w-full h-full relative rounded-md'>
+    <div className='border w-full relative rounded-md'>
       <div className='absolute z-10 w-full h-full opacity-0 hover:opacity-100 hover:translate-y-[-96px]  cursor-pointer duration-700'>
         <div className='w-full absolute bottom-0 bg-[#ffffff] border'>
           {sub?.map((item, index) => {
@@ -66,7 +66,7 @@ const ProductDetailShop = ({ img, name }) => {
         </div>
         <div className='w-full p-3 flex flex-col gap-7'>
           <div className='flex justify-between items-center'>
-            <h2 className={`text-xl w-full font-bold lg:text-sm ${name.length > 13 && 'md:truncate lg:truncate'}`}>{name}</h2>
+            <h2 className={`text-xl w-full font-bold lg:text-sm ${name.length > 13 && 'truncate md:truncate lg:truncate'}`}>{name}</h2>
             <span className='text-slate-500'>3500</span>
           </div>
           <div className='text-slate-500'>

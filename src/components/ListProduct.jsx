@@ -3,7 +3,7 @@ import ProductDetailShop from './ProductDetailShop'
 
 const ListProduct = ({ allProducts }) => {
   return (
-    <div className='grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 xs:grid-cols-1 gap-5 xs:gap-16 w-full h-full'>
+    <div className='grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 xs:grid-cols-1 gap-5 xs:gap-16 w-full'>
       {allProducts?.map((item) => {
         return (
           <div className='w-full h-full' key={item?.id}>

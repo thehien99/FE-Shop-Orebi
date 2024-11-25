@@ -1,11 +1,17 @@
 import axios from "axios";
 
 export const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_KEY,
+  baseURL: import.meta.env.VITE_API_KEY
 })
 
 axiosClient.interceptors.request.use((config) => {
   // Làm gì đó trước khi request dược gửi đi
+  let token = window.localStorage.getItem('token')
+  if (token) {
+    config.headers['Authorization'] = `Beaer ${token}`
+  } else {
+    delete config.headers['Authorization'];
+  }
 
   return config;
 }, function (error) {

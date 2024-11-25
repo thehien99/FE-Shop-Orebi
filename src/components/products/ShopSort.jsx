@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import icon from '../icons/icons'
+import icon from '../../icons/icons'
 import SelectShop from "./SelectShop"
 
 const ShopSort = () => {

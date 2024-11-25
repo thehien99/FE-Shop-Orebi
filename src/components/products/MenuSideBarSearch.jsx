@@ -1,5 +1,5 @@
 import React from 'react'
-import { menuSideBar, searchByBrand, searchByColor, searchByPrice } from "../lib/menuSidebar"
+import { menuSideBar, searchByBrand, searchByColor, searchByPrice } from "../../lib/menuSidebar"
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { motion } from 'framer-motion';

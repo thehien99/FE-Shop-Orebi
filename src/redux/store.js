@@ -15,6 +15,9 @@ import {
 
 import localStorage from "redux-persist/es/storage";
 import authReducer from "./reducers/authReducer"
+import getUserReducer from './reducers/getUserReducer'
+import adminReducer from './reducers/adminReducer'
+import getProduct from './reducers/productReducer'
 const persitConfig = {
   key: "auth",
   storage: localStorage,
@@ -24,13 +27,15 @@ const persitConfig = {
 const authConfig = {
   key: 'auth',
   storage: localStorage,
-  whitelist: ['token', 'isLogin']
+  whitelist: ['isLogin']
 }
 
 
 const rootReducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
-
+  getUser: getUserReducer,
+  admin: adminReducer,
+  product: getProduct
 });
 const persistedReducer = persistReducer(persitConfig, rootReducer);
 

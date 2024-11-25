@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from "react-router-dom"
 import icon from "../icons/icons"
-import SideBarShop from '../components/SideBarShop'
-import ContentShop from '../components/ContentShop'
+import ContentShop from '../components/products/ContentShop'
+import SideBarShop from '../components/products/SideBarShop'
+import { useDispatch } from 'react-redux'
+import { getAllProductActions } from '../redux/actions/productActions'
+import { getAllProductApi } from '../api/api'
+
 const Shop = () => {
   const location = useLocation()
   const { MdNavigateNext } = icon

@@ -14,8 +14,20 @@ import { MdNavigateNext } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
 import { HiViewGrid } from "react-icons/hi";
 import { MdViewList } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { GiClothes } from "react-icons/gi";
+import { MdPostAdd } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { FaShoppingBasket } from "react-icons/fa";
+import { LuBellRing } from "react-icons/lu";
+import { FaRegMessage } from "react-icons/fa6";
 
 const icon = {
+  FaRegMessage,
+  LuBellRing,
+  FaShoppingBasket,
+  CiEdit,
+  MdPostAdd,
   HiMenuAlt4,
   FaSearch,
   FaShoppingCart,
@@ -25,7 +37,7 @@ const icon = {
   FaAngleLeft,
   FaAngleRight,
   MdOutlineMore,
-  FaRegHeart,
-  TiTick, IoMenu, MdNavigateNext, FaAngleDown, HiViewGrid, MdViewList
+  FaRegHeart, GiClothes,
+  TiTick, IoMenu, MdNavigateNext, FaAngleDown, HiViewGrid, MdViewList, FaUser
 }
 export default icon

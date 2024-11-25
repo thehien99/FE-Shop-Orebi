@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuSideBarSearch from './MenuSideBarSearch'
-import icon from '../icons/icons'
+import icon from '../../icons/icons'
 
 const SideBarShop = () => {
   const { FaAngleDown } = icon

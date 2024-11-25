@@ -1,12 +1,5 @@
-const validate = (payload, setValid) => {
-
+export const validate = (payload, setValid) => {
   const newErr = {}
-
-  // if (!payload.name) {
-  //   newErr.name = 'Không được để trống'
-  // }
-
-
   if (!payload.emailOrPhone) {
     newErr.emailOrPhone = 'Không được để trống'
   } else if (!/\S+@\S+\.\S+/.test(payload.emailOrPhone)) {
@@ -18,8 +11,43 @@ const validate = (payload, setValid) => {
   } else if (payload.password.length < 6) {
     newErr.password = 'Mật khẩu ít nhất phải có 6 kí tự'
   }
+
   setValid(newErr)
   return (Object.keys(newErr).length === 0);
 
 }
-export default validate
+
+export const validateProduct = (payload, setValid) => {
+  const field = Object.entries(payload)
+  const newErr = {}
+  field.forEach((item) => {
+    switch (item[0]) {
+      case 'name':
+        if (!payload.name) {
+          newErr.name = 'VUi lòng điền'
+        }
+        break;
+      case 'price':
+        if (!payload.price) {
+          newErr.price = 'Vui lòng điền'
+        }
+        break;
+
+      case 'quantity':
+        if (!payload.quantity) {
+          newErr.quantity = 'Vui lòng điền'
+        }
+        break;
+
+      case 'description':
+        if (!payload.description) {
+          newErr.description = 'Vui lòng điền'
+        }
+        break;
+      default:
+        break;
+    }
+  })
+  setValid(newErr)
+  return (Object.keys(newErr).length === 0)
+}

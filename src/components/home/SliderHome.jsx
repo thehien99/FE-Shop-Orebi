@@ -8,9 +8,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { banner } from '../asset/img';
+import { banner } from '../../asset/img';
 import { Link } from 'react-router-dom';
-import icon from '../icons/icons';
+import icon from '../../icons/icons';
 
 
 const SliderHome = () => {

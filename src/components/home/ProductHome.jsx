@@ -1,6 +1,5 @@
 import React from 'react'
-import Carousels from './Carousel'
-
+import Carousels from '../Carousel'
 const ProductHome = ({ title, options }) => {
   return (
     <div className='mx-6 p-6'>

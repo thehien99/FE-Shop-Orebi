@@ -4,7 +4,7 @@ import icon from "../icons/icons"
 import { Link, Route, useLocation, useNavigate } from "react-router-dom"
 import Router from '../router/router'
 import { useEffect } from "react"
-import FormLogin from "../components/FormLogin"
+import FormLogin from "../components/formLogin/FormLogin"
 const Login = () => {
   const loginLeft = [
     {
@@ -29,7 +29,7 @@ const Login = () => {
     navigate(Router.home)
   }
   return (
-    <div className="w-full h-screen xs:h-full login flex text-white">
+    <div className="w-full  xs:h-full login flex text-white">
 
       <div className="w-[30%] lg:w-1/2 md:hidden p-12 flex flex-col gap-12 bg-[rgb(38,38,38)]">
         <div className="flex flex-col gap-5">

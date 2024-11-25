@@ -7,21 +7,7 @@ const Paginations = ({ allProducts, setData }) => {
   const totalPage = Math.ceil(allProducts.length / productPerPage)
   const idxOfLastProduct = currentPage * productPerPage
   const idxFristProduct = idxOfLastProduct - productPerPage
-  const currentProduct = allProducts.slice(idxFristProduct, idxOfLastProduct)
 
-  //nextPage
-  // const nextPage = () => {
-  //   if (currentPage < totalPage) {
-  //     return setCurrentPage(currentPage + 1)
-  //   }
-  // }
-
-  // //backPage
-  // const backPage = () => {
-  //   if (currentPage > 1) {
-  //     return setCurrentPage(currentPage - 1)
-  //   }
-  // }
 
   //trang cụ thể
   const goToPage = (pageNumber) => {
@@ -33,16 +19,16 @@ const Paginations = ({ allProducts, setData }) => {
     })
   }
   useEffect(() => {
+    const currentProduct = allProducts.slice(idxFristProduct, idxOfLastProduct)
     setData(currentProduct)
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
-  }, [currentPage])
+  }, [currentPage, allProducts])
 
   return (
     <div className='flex justify-center items-center gap-5'>
-      {/* <button onClick={backPage} disabled={currentPage === 1} className={`border-2 p-2 rounded-md font-bold`}>prev</button> */}
 
       {[...Array(totalPage).keys()].map((number) => (
         <button key={number + 1}
@@ -54,7 +40,6 @@ const Paginations = ({ allProducts, setData }) => {
       ))
       }
 
-      {/* <button onClick={nextPage} disabled={currentPage === totalPage} className='border-2 p-2 rounded-md font-bold'>next</button> */}
     </div >
 
 

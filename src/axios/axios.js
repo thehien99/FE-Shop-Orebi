@@ -33,25 +33,30 @@ axiosClient.interceptors.response.use(
       try {
         // Lấy refreshToken từ cookies
         const refreshToken = Cookies.get('refreshToken');
+        console.log(refreshToken)
         if (!refreshToken) {
           throw new Error('Refresh token not found!');
         }
 
         // Gửi request lên BE để lấy accessToken mới
-        const res = await axios.post(`${import.meta.env.VITE_API_KEY}rftk`, null, {
+        const res = await axiosClient({
+          method: 'post',
+          url: 'rftk',
           withCredentials: true, // Bật để gửi cookie refreshToken
-        });
+        })
 
-        const { accessToken } = res.data; // Lấy accessToken mới từ BE
-        console.log(accessToken)
-        // Lưu accessToken mới vào cookie (hoặc localStorage nếu cần)
-        localStorage.setItem('token', accessToken);
+        console.log(res)
+        // const { accessToken } = res.data; // Lấy accessToken mới từ BE
+        // console.log(accessToken)
 
-        // Cập nhật accessToken mới vào headers
+        // // Lưu accessToken mới vào cookie (hoặc localStorage nếu cần)
+        // localStorage.setItem('token', accessToken);
+
+        // // Cập nhật accessToken mới vào headers
         // axiosClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        // originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
 
-        // Thực hiện lại request ban đầu
+        // // Thực hiện lại request ban đầu
         return axiosClient(originalRequest);
       } catch (refreshError) {
         // Nếu refreshToken không hợp lệ hoặc xảy ra lỗi

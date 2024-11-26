@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     if (checkToken) {
       dispatch(loginSuccess({
-        accessToken: checkToken
+        accessToken: checkToken,
       }))
     }
   }, [checkToken])

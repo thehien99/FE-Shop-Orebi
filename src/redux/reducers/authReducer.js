@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
+
 const authReducer = createSlice({
   name: "auth",
   initialState: {
     payload: "",
     payloadRegister: {},
     isLogin: false,
-    token: null
+    token: null,
   },
   reducers: {
     loginSuccess: (state, action) => {
       state.token = localStorage.setItem('token', action.payload.accessToken)
       state.payload = action.payload.msg
-      state.isLogin = action.payload.accessToken && true
+      state.isLogin = !!action.payload.accessToken
     },
     loginFailed: (state, action) => {
       state.payload = action.payload;

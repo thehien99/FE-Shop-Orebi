@@ -2,6 +2,7 @@ import { getUserApi, loginApi, registerApi } from "../../api/api"
 import { axiosClient } from "../../axios/axios"
 import { loginFailed, loginSuccess, logoutSuccess, registerFailed, registerSuccess } from "../reducers/authReducer"
 import { getUserSuccess } from "../reducers/getUserReducer"
+import Cookies from "js-cookie"; // Thư viện lưu cookie
 
 export const registerActions = (payload) => async (dispatch) => {
   try {
@@ -15,6 +16,7 @@ export const registerActions = (payload) => async (dispatch) => {
 export const loginActions = (payload) => async (dispatch) => {
   try {
     const res = await loginApi(payload)
+    Cookies.set('refreshToken', res.refreshToken)
     dispatch(loginSuccess(res))
   } catch (error) {
     dispatch(loginFailed(error))

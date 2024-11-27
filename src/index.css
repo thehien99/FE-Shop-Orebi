@@ -46,6 +46,7 @@ div.bestseller button {
     right: -13% !important;
   }
   .slick-arrow {
+    top: 35% !important;
     background-color: #cccc !important;
     width: 30px !important;
     height: 30px !important;

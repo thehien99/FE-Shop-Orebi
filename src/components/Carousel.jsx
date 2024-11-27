@@ -56,8 +56,8 @@ const Carousels = ({ options }) => {
             dataImg?.map((item, idx) => {
               return (
                 <div key={idx} className="w-full">
-                  <div className="relative w-[98%] xs:w-full h-full">
-                    <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px] md:hover:translate-y-[80px] xs:hover:translate-y-[152px] cursor-pointer  duration-700">
+                  <div className="relative w-[98%] xs:w-full mbl:w-full h-full">
+                    <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px] md:hover:translate-y-[80px] mbl:hover:translate-y-[165px] xs:hover:translate-y-[152px] cursor-pointer  duration-700">
                       <div className="absolute top-0 right-0 w-full">
                         <div className=" w-full bg-[#ffffff]">
                           {sub?.map((item, index) => {
@@ -95,8 +95,8 @@ const Carousels = ({ options }) => {
               return (
                 <div key={index} className="w-full">
                   <div className=" relative" key={index}>
-                    <div className="relative w-[98%] xs:w-full h-full">
-                      <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px]  md:hover:translate-y-[102px] xs:hover:translate-y-[155px] cursor-pointer  duration-700">
+                    <div className="relative w-[98%] xs:w-full mbl:w-full h-full">
+                      <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px]  md:hover:translate-y-[102px] mbl:hover:translate-y-[165px] xs:hover:translate-y-[155px] cursor-pointer  duration-700">
                         <div className="absolute top-0 right-0 w-full">
                           <div className="border w-full bg-[#ffffff]">
                             {sub?.map((item, index) => {

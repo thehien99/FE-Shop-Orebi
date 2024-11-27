@@ -72,6 +72,9 @@ module.exports = {
 			md: {
 				max: '768px'
 			},
+			mbl: {
+				max: '425px'
+			},
 			xs: {
 				max: '415px'
 			},

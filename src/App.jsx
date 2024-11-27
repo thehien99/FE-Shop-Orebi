@@ -18,6 +18,7 @@ import { getAllProductActions } from "./redux/actions/productActions";
 import { getAllProductApi } from "./api/api";
 import Loading from "./components/Loading";
 import { loginSuccess } from "./redux/reducers/authReducer";
+import DetailProduct from "./components/products/DetailProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
             <Route path={Router.shop} element={<Shop />} />
             <Route path={Router.about} element={<About />} />
             <Route path={Router.productItem} element={<ProductItem />} />
+            <Route path={Router.detail_product} element={<DetailProduct />} />
             <Route path={Router.login} element={<Login />} />
           </Route>
 

@@ -1,6 +1,7 @@
 const Router = {
   home: '/*',
-  shop: 'shop',
+  shop: 'Shop',
+  detail_product: 'detail/:id',
   login: 'login',
   about: 'about',
   contact: 'contact',

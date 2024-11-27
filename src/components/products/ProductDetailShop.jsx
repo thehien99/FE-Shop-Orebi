@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link, useNavigate } from "react-router-dom";
-import icon from '../../icons/icons';
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import { formatPrice } from '../../lib/utils';
-const ProductDetailShop = ({ img, name, price, description }) => {
-
+const ProductDetailShop = ({ img, name, price, description, id }) => {
+  const navigate = useNavigate()
   const uppercaseFrist = description?.charAt(0).toUpperCase() + description.slice(1)
 
-  const { GiReturnArrow, FaShoppingCart, MdOutlineMore, FaRegHeart } = icon
-
+  const handleNextPage = () => {
+    navigate(`/detail/${id}`); // Điều hướng tới router với id
+  }
   return (
-    <div className=' w-full relative rounded-md cursor-pointer'>
+    <div onClick={handleNextPage} className=' w-full relative rounded-md cursor-pointer'>
       <div className='absolute z-10 w-full h-full opacity-0 hover:opacity-100'>
         <div className='w-full h-[19%] absolute bottom-[36px] bg-[#ffffff]  flex gap-2'>
           {img?.map((item, index) => {
             return (
-              <img src={item} alt="" className='w-[12%] flex object-cover' />
+              <img key={index} src={item} alt="" className='w-[12%] flex object-cover' />
             )
           })}
         </div>

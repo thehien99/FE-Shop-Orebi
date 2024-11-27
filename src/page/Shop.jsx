@@ -19,7 +19,7 @@ const Shop = () => {
         {location.pathname.slice(1)}
       </div>
       <div className='shop flex mt-[50px] gap-11 '>
-        <div className='w-[40%] side_bar xs:hidden'>
+        <div className='w-[40%] side_bar xs:hidden mbl:hidden'>
           <SideBarShop />
         </div>
         <div className='w-full listProduct'>

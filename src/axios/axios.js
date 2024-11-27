@@ -33,7 +33,6 @@ axiosClient.interceptors.response.use(
       try {
         // Lấy refreshToken từ cookies
         const refreshToken = Cookies.get('refreshToken');
-        console.log(refreshToken)
         if (!refreshToken) {
           throw new Error('Refresh token not found!');
         }
@@ -45,16 +44,14 @@ axiosClient.interceptors.response.use(
           withCredentials: true, // Bật để gửi cookie refreshToken
         })
 
-        console.log(res)
-        // const { accessToken } = res.data; // Lấy accessToken mới từ BE
-        // console.log(accessToken)
+        const { accessToken } = res; // Lấy accessToken mới từ BE
 
         // // Lưu accessToken mới vào cookie (hoặc localStorage nếu cần)
-        // localStorage.setItem('token', accessToken);
+        localStorage.setItem('token', accessToken);
 
         // // Cập nhật accessToken mới vào headers
-        // axiosClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        // originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        axiosClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
 
         // // Thực hiện lại request ban đầu
         return axiosClient(originalRequest);

@@ -12,8 +12,8 @@ const Search = () => {
 
 
   return (
-    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between items-center'>
-      <div className='w-1/2 xs:w-full'>
+    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center'>
+      <div className='w-1/2 xs:w-full mbl:w-full'>
         <Input placeholder='Search Product' search='search' />
       </div>
       <div className='cursor-pointer flex justify-center items-center gap-4 xs:hidden'>

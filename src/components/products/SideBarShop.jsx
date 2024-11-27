@@ -10,9 +10,6 @@ const SideBarShop = () => {
         <MenuSideBarSearch title='Shop by Category' options='category' />
       </div>
       <div className='mt-10'>
-        <MenuSideBarSearch title='Shop by Color' options='color' icon={<FaAngleDown />} />
-      </div>
-      <div className='mt-10'>
         <MenuSideBarSearch title='Shop by Brand' options='brand' icon={<FaAngleDown />} />
       </div>
       <div className='mt-10'>

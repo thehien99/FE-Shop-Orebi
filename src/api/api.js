@@ -90,13 +90,12 @@ export const getOneProductApi = (query) => {
 }
 
 export const searchProductApi = (query) => {
-  console.log(query)
   return new Promise(async (resolve, reject) => {
     try {
       const response = await axiosClient({
         method: 'get',
         url: `search`,
-        params: { search: query }
+        params: { q: query }
       })
       resolve(response)
     } catch (error) {

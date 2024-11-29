@@ -19,21 +19,22 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
 
     e.preventDefault()
 
-    const normalizedSearchTerm = removeAccents(searchValue);
-    if (normalizedSearchTerm === searchValue.toLowerCase()) {
-      setError('Vui lòng nhập chữ có dấu');
-      return;
-    }
+    // const normalizedSearchTerm = removeAccents(searchValue);
+    // if (normalizedSearchTerm === searchValue.toLowerCase()) {
+    //   // setError('Vui lòng nhập chữ có dấu');
+    //   return;
+    // }
 
     if (searchValue.trim()) {
-      setSearchParams({ search: searchValue })
-      navigate(`/shop?search=${searchValue}`)
+      setSearchParams({ q: searchValue })
+      navigate(`/shop?q=${searchValue}`)
       setSearchValue('')
-      setError('')
+      // setError('')
     } else (
       setSearchParams({})
     )
   }
+
   return (
     <div className="relative">
       <form onSubmit={handleSearch}>
@@ -53,9 +54,9 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
         <button className="absolute top-3 right-5" type="submit">
           {props.search && <FaSearch className="text-2xl" />}
         </button>
-        {error &&
+        {/* {error &&
           <i className="text-red-500">*{error}</i>
-        }
+        } */}
       </form>
     </div>
   );

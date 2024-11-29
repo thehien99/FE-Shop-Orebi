@@ -12,9 +12,9 @@ const SideBarShop = () => {
       <div className='mt-10'>
         <MenuSideBarSearch title='Shop by Brand' options='brand' icon={<FaAngleDown />} />
       </div>
-      <div className='mt-10'>
+      {/* <div className='mt-10'>
         <MenuSideBarSearch title='Shop by Price' options='price' />
-      </div>
+      </div> */}
     </div>
   )
 }

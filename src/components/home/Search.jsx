@@ -3,16 +3,13 @@ import { Input } from "@/components/ui/input"
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import icon from '../../icons/icons'
-import { searchProductApi } from '../../api/api'
-import { ProductSearchActions } from '../../redux/actions/productActions'
 const Search = () => {
   const { FaShoppingCart, FaUser } = icon
   const isLogin = useSelector(state => state.auth?.isLogin)
-  const nameUser = useSelector(state => state.getUser.userInfo.name)
-
+  const nameUser = useSelector(state => state.getUser.userInfo?.name)
 
   return (
-    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center'>
+    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center  z-10 bg-slate-300 top-0 w-full'>
       <div className='w-1/2 xs:w-full mbl:w-full'>
         <Input placeholder='Search Product' search='search' />
       </div>

@@ -75,7 +75,7 @@ const Carousels = ({ options }) => {
                     </div>
 
                     { /* hình*/}
-                    <img src={item?.img[0]} alt="" className="w-full" />
+                    <img src={item?.image[0]} alt="" className="w-full" />
                     <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
                       <div className="flex flex-col gap-2">
                         <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'} text-xl`}>
@@ -113,7 +113,7 @@ const Carousels = ({ options }) => {
                         </div>
                       </div>
 
-                      <img key={index} src={item?.img[0]} alt="" />
+                      <img key={index} src={item?.image[0]} alt="" />
                       <div className="border p-6 bg-[#ffffff]">
                         <div className="flex flex-col gap-2">
                           <div className={`font-bold ${(item?.name)?.length > '15' && 'lg:truncate'} text-xl`}>

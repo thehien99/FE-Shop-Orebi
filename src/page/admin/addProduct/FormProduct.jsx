@@ -7,8 +7,9 @@ import { useLocation } from 'react-router-dom';
 
 const FormProduct = ({ valid, payload, setPayload }) => {
   const dataOneProduct = useSelector(state => state.product.productOne)
+  console.log(dataOneProduct)
   const location = useLocation()
-  const [size, setSize] = useState(location.state === 'Đăng sản phẩm' ? payload.size : dataOneProduct.size)
+  const [size, setSize] = useState(location.state === 'Đăng sản phẩm' ? payload?.size : dataOneProduct?.size)
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
   const handleSetSize = (e) => {
     setSize(e.target.value)
@@ -24,7 +25,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
     <form className='flex flex-col gap-5'>
       <label htmlFor="">
         Tên sản phẩm
-        <InputAdmin payload={payload.name} setPayload={setPayload} keyPayload='name' dataOneProduct={dataOneProduct.name} />
+        <InputAdmin payload={payload.name} setPayload={setPayload} keyPayload='name' dataOneProduct={dataOneProduct?.name} />
         {valid &&
           <i className='text-red-400'>{valid.name} </i>
         }
@@ -38,7 +39,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             }
           </div>
           <div className='w-full'>
-            <InputAdmin payload={payload.price} setPayload={setPayload} keyPayload='price' dataOneProduct={dataOneProduct.price} />
+            <InputAdmin payload={payload.price} setPayload={setPayload} keyPayload='price' dataOneProduct={dataOneProduct?.price} />
           </div>
         </div>
         <div className=' flex flex-col gap-3'>
@@ -48,14 +49,14 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             }
           </div>
           <div className=''>
-            <InputAdmin payload={payload.quantity} setPayload={setPayload} keyPayload='quantity' dataOneProduct={dataOneProduct.quantity} />
+            <InputAdmin payload={payload?.quantity} setPayload={setPayload} keyPayload='quantity' dataOneProduct={dataOneProduct?.quantity} />
           </div>
         </div>
 
         <div className=' flex flex-col gap-3'>
           <div>Tồn kho</div>
           <div className=''>
-            <InputAdmin payload={payload.totalSock} setPayload={setPayload} keyPayload='totalSock' dataOneProduct={dataOneProduct.totalSock} />
+            <InputAdmin payload={payload?.totalSock} setPayload={setPayload} keyPayload='totalSock' dataOneProduct={dataOneProduct?.totalSock} />
           </div>
         </div>
 
@@ -91,7 +92,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             <i className='ms-2 text-red-500'>{valid.description}</i>
           }
         </span>
-        <textarea name="" value={location.state === 'Đăng sản phẩm' ? payload.description : dataOneProduct.description} onChange={(e) => setPayload((prev) => (
+        <textarea name="" value={location?.state === 'Đăng sản phẩm' ? payload?.description : dataOneProduct?.description} onChange={(e) => setPayload((prev) => (
           {
             ...prev,
             description: e.target.value

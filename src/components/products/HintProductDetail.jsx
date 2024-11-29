@@ -7,7 +7,7 @@ const HintProductDetail = ({ allProduct }) => {
   var settings = {
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 4,
     initialSlide: 0,
     responsive: [
@@ -50,7 +50,7 @@ const HintProductDetail = ({ allProduct }) => {
             return (
               <div onClick={() => handleNextPage(item?.id)} className='cursor-pointer' key={idx}>
                 <div className='img'>
-                  <img src={item?.img[0]} className='h-[300px] w-[95%] mbl:w-full object-cover rounded-md' alt="" />
+                  <img src={item?.image[0]} className='h-[300px] w-[95%] mbl:w-full object-cover rounded-md' alt="" />
                 </div>
                 <div className='img_price_name mt-3 flex flex-col  '>
                   <span className='text-lg font-bold'>{item?.name}</span>

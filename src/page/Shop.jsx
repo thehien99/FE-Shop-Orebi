@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom"
 import icon from "../icons/icons"
 import ContentShop from '../components/products/ContentShop'
 import SideBarShop from '../components/products/SideBarShop'
-import { useDispatch } from 'react-redux'
-import { getAllProductActions } from '../redux/actions/productActions'
-import { getAllProductApi } from '../api/api'
+
 
 const Shop = () => {
   const location = useLocation()

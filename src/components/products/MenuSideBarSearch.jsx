@@ -1,21 +1,29 @@
 import React from 'react'
 import { menuSideBar, searchByBrand, searchByPrice } from "../../lib/menuSidebar"
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 
 const MenuSideBarSearch = ({ title, options, icon }) => {
   const [show, setShow] = useState(false)
+  const [active, setActive] = useState()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const dispatch = useDispatch()
   const handleShow = () => {
     setShow(!show)
   }
+
+  const handleSearch = (name, idx) => {
+    setSearchParams({ q: name.toLowerCase() })
+  }
+
   return (
     <motion.div
       initial={{ y: -60 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 60 }}
     >
-
       <div className='flex flex-col gap-4'>
         <div onClick={handleShow} className='cursor-pointer font-extrabold text-xl flex items-center justify-between'>
           {title}
@@ -24,9 +32,9 @@ const MenuSideBarSearch = ({ title, options, icon }) => {
         {options === 'category' && menuSideBar?.map((item) => {
           return (
             <div key={item.idx} className='flex flex-col gap-5 '>
-              <Link to='/' className='border-b-2 text-slate-500 p-2 hover:bg-slate-300'>
+              <div onClick={() => handleSearch(item?.name, item?.idx)} className={`border-b-2 text-slate-500 p-2 hover:bg-slate-300 cursor-pointer ${active === item?.idx ? 'bg-blue-500 text-white' : ''}`} >
                 <span>{item?.name}</span>
-              </Link>
+              </div>
             </div>
           )
         })}
@@ -42,9 +50,9 @@ const MenuSideBarSearch = ({ title, options, icon }) => {
                   key={item.id}
                 >
                   <ul className='flex flex-col gap-5 '>
-                    <NavLink to='/' className={({ isActive }) => isActive ? 'text-black p-2 bg-red-600' : 'border-b-2 text-slate-500 p-2 flex items-center gap-3 hover:bg-blue-100 hover:text-red-500 hover:border-black'}>
+                    <div onClick={() => handleSearch(item?.name, item?.idx)} className={`border-b-2 text-slate-500 p-2 hover:bg-slate-300 cursor-pointer ${active === item?.idx ? 'bg-blue-500 text-white' : ''}`} >
                       <li>{item?.name}</li>
-                    </NavLink>
+                    </div>
                   </ul>
                 </motion.div>
               )
@@ -52,17 +60,17 @@ const MenuSideBarSearch = ({ title, options, icon }) => {
           )
         }
 
-        {options === 'price' && searchByPrice?.map((item) => {
+        {/* {options === 'price' && searchByPrice?.map((item) => {
           return (
             <div key={item.id} className='flex flex-col gap-5 '>
-              <Link to='/' className='border-b-2 text-slate-500 p-2 hover:bg-orange-200'>
+              <div onClick={() => handleSearch(item?.name, item?.idx)} className={`border-b-2 text-slate-500 p-2 hover:bg-slate-300 cursor-pointer ${active === item?.idx ? 'bg-blue-500 text-white' : ''}`} >
                 <span>{item?.name}</span>
-              </Link>
+              </div>
             </div>
           )
-        })}
+        })} */}
       </div>
-    </motion.div>
+    </motion.div >
   )
 }
 

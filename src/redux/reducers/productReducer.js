@@ -14,7 +14,7 @@ const getProduct = createSlice({
       state.product = null
     },
     getOneProductSuccess: (state, action) => {
-      state.productOne = action.payload.res
+      state.productOne = action.payload
     },
     getOneProductFailed: (state, acrtion) => {
       state.productOne = null

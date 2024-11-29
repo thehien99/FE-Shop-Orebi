@@ -4,7 +4,7 @@ const Paginations = ({ allProducts, setData }) => {
   const productPerPage = 10
   const [currentPage, setCurrentPage] = useState(1)
   const [activePage, setActivePage] = useState(currentPage)
-  const totalPage = Math.ceil(allProducts.length / productPerPage)
+  const totalPage = Math.ceil(allProducts?.length / productPerPage)
   const idxOfLastProduct = currentPage * productPerPage
   const idxFristProduct = idxOfLastProduct - productPerPage
 

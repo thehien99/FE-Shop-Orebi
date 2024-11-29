@@ -19,10 +19,9 @@ const ContentShop = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const allProduct = useSelector(state => state.product.product)
-
   const [allProducts, setProducts] = useState(allProduct)
   const [params] = useSearchParams()
-  const param = params.get('search')
+  const param = params.get('q')
 
   useEffect(() => {
     if (param) {
@@ -30,7 +29,7 @@ const ContentShop = () => {
         setLoading(true)
         const res = await searchProductApi(param)
         if (res) {
-          setProducts(res.productImg)
+          setProducts(res.data)
           setLoading(false)
         }
       }

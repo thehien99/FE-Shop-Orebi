@@ -12,7 +12,7 @@ export const getAllProductActions = (res) => async (dispatch) => {
 export const getOneProductActions = (payload) => async (dispatch) => {
   try {
     const res = await getOneProductApi(payload)
-    dispatch(getOneProductSuccess(res))
+    dispatch(getOneProductSuccess(res.payload))
   } catch (error) {
     dispatch(getOneProductFailed(error))
   }

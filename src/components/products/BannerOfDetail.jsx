@@ -11,11 +11,11 @@ const BannerOfDetail = ({ img, name }) => {
       <div className='text-2xl flex-col p-6 gap-6 font-medium flex justify-center items-center'>
         <div className='w-1/2 mbl:w-full'>
           The stitched overlays on the upper add heritage style, durability and support.
+          {
+            img &&
+            <img src={img[1]} alt="" className='w-full object-scale-down' />
+          }
         </div>
-        {
-          img &&
-          <img src={img[1]} alt="" className='w-full object-scale-down' />
-        }
 
       </div>
     </div >

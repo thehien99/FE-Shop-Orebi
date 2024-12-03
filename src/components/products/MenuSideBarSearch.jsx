@@ -47,7 +47,7 @@ const MenuSideBarSearch = ({ title, options, icon }) => {
                   initial={{ y: -60 }}
                   animate={{ y: 0 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 60 }}
-                  key={item.id}
+                  key={item.idx}
                 >
                   <ul className='flex flex-col gap-5 '>
                     <div onClick={() => handleSearch(item?.name, item?.idx)} className={`border-b-2 text-slate-500 p-2 hover:bg-slate-300 cursor-pointer ${active === item?.idx ? 'bg-blue-500 text-white' : ''}`} >

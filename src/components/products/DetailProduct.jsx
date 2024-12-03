@@ -13,7 +13,7 @@ const DetailProduct = () => {
   const [data, setData] = useState()
   const [activeImg, setActiveImg] = useState(0)
   const allProduct = useSelector((state) => state.product.product)
-  console.log(allProduct)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])

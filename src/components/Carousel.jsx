@@ -6,6 +6,7 @@ import { offers } from "../asset/img";
 import icon from "../icons/icons";
 import { useDispatch, useSelector } from 'react-redux'
 import { formatPrice } from '../lib/utils'
+
 const Carousels = ({ options }) => {
   const { GiReturnArrow, FaShoppingCart, MdOutlineMore, FaRegHeart } = icon
   const settings = {
@@ -57,7 +58,7 @@ const Carousels = ({ options }) => {
               return (
                 <div key={idx} className="w-full">
                   <div className="relative w-[98%] xs:w-full mbl:w-full h-full">
-                    <div className="absolute w-full h-full  opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px] md:hover:translate-y-[80px] mbl:hover:translate-y-[168px] xs:hover:translate-y-[152px] cursor-pointer  duration-700">
+                    <div className="absolute w-full h-full opacity-0 hover:opacity-100 group  hover:translate-y-[182px] lg:hover:translate-y-[132px] md:hover:translate-y-[80px] mbl:hover:translate-y-[168px] xs:hover:translate-y-[152px] cursor-pointer  duration-700">
                       <div className="absolute top-0 right-0 w-full">
                         <div className=" w-full bg-[#ffffff]">
                           {sub?.map((item, index) => {
@@ -75,7 +76,7 @@ const Carousels = ({ options }) => {
                     </div>
 
                     { /* hình*/}
-                    <img src={item?.image[0]} alt="" className="w-full" />
+                    <img src={item?.image[0]} alt="" className="w-full h-[348px] object-cover" />
                     <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
                       <div className="flex flex-col gap-2">
                         <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'} text-xl`}>
@@ -113,8 +114,7 @@ const Carousels = ({ options }) => {
                         </div>
                       </div>
 
-                      <img key={index} src={item?.image[0]} alt="" />
-                      <div className="border p-6 bg-[#ffffff]">
+                      <img src={item?.image[0]} alt="" className="w-full h-[348px] object-cover" />                      <div className="border p-6 bg-[#ffffff]">
                         <div className="flex flex-col gap-2">
                           <div className={`font-bold ${(item?.name)?.length > '15' && 'lg:truncate'} text-xl`}>
                             {item?.name}

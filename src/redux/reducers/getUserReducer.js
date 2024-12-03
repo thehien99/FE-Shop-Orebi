@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const getUserReducer = createSlice({
   name: "getUser",
   initialState: {
-    userInfo: ''
+    userInfo: '',
+    getAddress: '',
   },
   reducers: {
     getUserSuccess: (state, action) => {
@@ -10,10 +11,16 @@ const getUserReducer = createSlice({
     },
     getUseFaied: (state) => {
       state.userInfo = null
+    },
+    getAddressSuccess: (state, action) => {
+      state.getAddress = action.payload
+    },
+    getAddressFailed: (state, action) => {
+      state.getAddress = null
     }
   },
 });
 
-export const { getUserSuccess, getUseFaied } = getUserReducer.actions;
+export const { getAddressSuccess, getAddressFailed, getUserSuccess, getUseFaied } = getUserReducer.actions;
 
 export default getUserReducer.reducer;

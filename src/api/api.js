@@ -103,3 +103,48 @@ export const searchProductApi = (query) => {
     }
   })
 }
+
+
+export const updateUser = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'put',
+        url: 'update_user',
+        data: data
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const createAddress = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'post',
+        url: 'createAddress',
+        data: data
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const getAddress = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'get',
+        url: 'getAddress',
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}

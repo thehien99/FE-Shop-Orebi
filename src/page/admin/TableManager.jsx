@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, NavLink, Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import Router from '../../router/router'
 import SideBar from './SideBar'
 import Header from './Header'

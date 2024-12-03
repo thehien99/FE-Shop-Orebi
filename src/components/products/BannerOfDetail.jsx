@@ -1,7 +1,6 @@
 import React from 'react'
 
 const BannerOfDetail = ({ img, name }) => {
-  console.log(img)
   return (
     <div className='text-center p-5 w-full h-full'>
       <span className='text-2xl font-medium'>Explore the {name}</span>

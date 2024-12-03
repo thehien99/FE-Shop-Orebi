@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from "@/components/ui/input"
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import icon from '../../icons/icons'
+import Router from '../../router/router'
+
 const Search = () => {
   const { FaShoppingCart, FaUser } = icon
   const isLogin = useSelector(state => state.auth?.isLogin)
   const nameUser = useSelector(state => state.getUser.userInfo?.name)
+  const navigate = useNavigate()
+
+  const handleInforUser = () => {
+    navigate(Router.infoUser)
+  }
 
   return (
-    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center  z-10 bg-slate-300 top-0 w-full'>
+    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center'>
       <div className='w-1/2 xs:w-full mbl:w-full'>
         <Input placeholder='Search Product' search='search' />
       </div>
@@ -18,7 +25,7 @@ const Search = () => {
         {isLogin
           &&
           <div className='flex items-center justify-center gap-5'>
-            <FaUser className='text-xl' />
+            <FaUser className='text-xl' onClick={handleInforUser} />
             <div className='flex gap-2'>
               Xin chào,
               <i className='font-bold uppercase font-serif'>

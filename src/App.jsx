@@ -19,6 +19,12 @@ import { getAllProductApi } from "./api/api";
 import Loading from "./components/Loading";
 import { loginSuccess } from "./redux/reducers/authReducer";
 import DetailProduct from "./components/products/DetailProduct";
+import InforUser from "./components/inforUser/InforUser";
+import GeneralUser from "./components/inforUser/GeneralUser";
+import PaymentUser from "./components/inforUser/PaymentUser";
+import HistoryShipUser from "./components/inforUser/HistoryShipUser";
+import ItemOrderUser from "./components/inforUser/ItemOrderUser";
+import StatusItemUser from "./components/inforUser/StatusItemUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,7 +74,18 @@ function App() {
             <Route path={Router.login} element={<Login />} />
           </Route>
 
+          {/* user */}
+          <Route path={Router.infoUser} element={<InforUser />} >
+            <Route path={Router.general_user} element={<GeneralUser />} />
+            <Route path={Router.payment} element={<PaymentUser />} />
+            <Route path={Router.historyShip} element={<HistoryShipUser />} />
+            <Route path={Router.itemOrder} element={<ItemOrderUser />} />
+            <Route path={Router.statusItem} element={<StatusItemUser />} />
 
+          </Route>
+
+
+          {/* admin */}
           <Route path={Router.login_admin} element={<LoginAdmin />} />
           <Route path={Router.table} element={<TableManager />}>
             <Route path={Router.all_product} element={<Allproduct />} />

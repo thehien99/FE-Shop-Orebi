@@ -1,7 +1,7 @@
-import { getUserApi, loginApi, registerApi } from "../../api/api"
+import { getAddress, getUserApi, loginApi, registerApi } from "../../api/api"
 import { axiosClient } from "../../axios/axios"
 import { loginFailed, loginSuccess, logoutSuccess, registerFailed, registerSuccess } from "../reducers/authReducer"
-import { getUserSuccess } from "../reducers/getUserReducer"
+import { getAddressSuccess, getUserSuccess } from "../reducers/getUserReducer"
 import Cookies from "js-cookie"; // Thư viện lưu cookie
 
 export const registerActions = (payload) => async (dispatch) => {
@@ -36,6 +36,15 @@ export const getUserActions = () => async (dispatch) => {
   try {
     const res = await getUserApi()
     dispatch(getUserSuccess(res))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getAddressActions = () => async (dispatch) => {
+  try {
+    const res = await getAddress()
+    dispatch(getAddressSuccess(res))
   } catch (error) {
     console.log(error)
   }

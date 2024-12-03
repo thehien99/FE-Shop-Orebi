@@ -58,7 +58,7 @@ const FormLogin = ({ options }) => {
     setSelectedOption(e.target.value); // Cập nhật state với giá trị đã chọn
   };
   return (
-    <Card className="mx-auto max-w-sm  translate-y-[25%] md:translate-x-1/2 md:translate-y-[15%] xs:translate-x-0 xs:translate-y-20">
+    <Card className="mx-auto max-w-sm  translate-y-[15%] md:translate-x-1/2 md:translate-y-[15%] xs:translate-x-0 xs:translate-y-20">
       <CardHeader className="space-y-1">
         {options ? (<div>
           <CardTitle className="text-2xl font-bold text-red-400">

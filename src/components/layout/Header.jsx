@@ -57,7 +57,7 @@ const Header = () => {
                 <SheetHeader>
                   {menuHeader?.map((item) => {
                     return <div key={item}>
-                      <NavLink to={item?.name} className={`hover:text-black hover:underline  ${item?.idx === 1 && 'text-black underline'}`} >
+                      <NavLink to={`/${item?.name}`} className={`hover:text-black hover:underline  ${item?.idx === 1 && 'text-black underline'}`} >
                         {item?.name}
                       </NavLink>
                     </div>
@@ -78,7 +78,7 @@ const Header = () => {
               {menuHeader?.map((item) => {
                 return <NavLink
                   className={({ isActive }) => (isActive ? 'text-black underline' : 'hover:underline hover:text-black')}
-                  to={item.name} key={item.idx}  >
+                  to={`/${item.name}`} key={item.idx}  >
                   {item?.name}
                 </NavLink>
               })}

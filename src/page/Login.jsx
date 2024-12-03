@@ -29,12 +29,12 @@ const Login = () => {
     navigate(Router.home)
   }
   return (
-    <div className="w-full  xs:h-full login flex text-white">
+    <div className="w-full xs:h-full login flex text-white">
 
-      <div className="w-[30%] lg:w-1/2 md:hidden p-12 flex flex-col gap-12 bg-[rgb(38,38,38)]">
+      <div className="w-[27%]  lg:w-1/2 md:hidden p-12 flex flex-col gap-12 bg-[rgb(38,38,38)]">
         <div className="flex flex-col gap-5">
           <Link to={Router.home}>
-            <img src={image} alt="" className="w-[30%] bg-white " />
+            <img src={image} alt="" className="w-[30%] h-full bg-white " />
           </Link>
           <div className="flex flex-col gap-2">
             <div className="text-2xl font-bold">
@@ -45,7 +45,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 ">
           {loginLeft?.map((item, index) => {
             return (
               <div key={index} className="flex justify-center  gap-2">

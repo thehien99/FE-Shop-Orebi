@@ -3,7 +3,7 @@ import ProductDetailShop from './ProductDetailShop'
 import { motion } from 'framer-motion';
 
 const ListProduct = ({ allProducts }) => {
-  console.log(allProducts?.length)
+
   return (
     <motion.div
       initial={{ y: -60 }}

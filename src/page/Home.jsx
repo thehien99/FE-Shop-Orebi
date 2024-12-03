@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../components/layout/Footer'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/layout/Header'
@@ -9,6 +9,7 @@ import { loginSuccess } from '../redux/reducers/authReducer'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const [scrollPosition, setScrollPosition] = useState(0)
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -25,6 +26,18 @@ const Home = () => {
   }, [checkToken])
 
   const location = useLocation()
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY
+    setScrollPosition(currentScroll)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   return (
     <motion.div
       initial={{ y: -60 }}
@@ -35,7 +48,7 @@ const Home = () => {
         <div className='border-b-2'>
           <Header />
         </div>
-        <div className='bg-slate-200'>
+        <div className={`bg-slate-200 ${scrollPosition >= 100 ? 'fixed z-20 w-full top-0' : ''}`}>
           {location.pathname !== '/login' && < Search />}
         </div>
         <Outlet />

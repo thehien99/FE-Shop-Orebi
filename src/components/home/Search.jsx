@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from "@/components/ui/input"
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import icon from '../../icons/icons'
 import Router from '../../router/router'
@@ -9,8 +9,14 @@ const Search = () => {
   const { FaShoppingCart, FaUser } = icon
   const isLogin = useSelector(state => state.auth?.isLogin)
   const nameUser = useSelector(state => state.getUser.userInfo?.name)
+  const totalCart = useSelector(state => state.cartReducer.cartProduct)
+  const [cartLength, setCartLength] = useState(0)
   const navigate = useNavigate()
 
+  useEffect(() => {
+    setCartLength(totalCart.length)
+  }, [totalCart])
+  console.log(cartLength)
   const handleInforUser = () => {
     navigate(Router.infoUser)
   }
@@ -21,7 +27,10 @@ const Search = () => {
         <Input placeholder='Search Product' search='search' />
       </div>
       <div className='cursor-pointer flex justify-center items-center gap-4 xs:hidden'>
-        <FaShoppingCart className='text-xl' />
+        <NavLink to={`${Router.shopping_cart}`} className='relative'>
+          <FaShoppingCart className='text-2xl' />
+          <span className='absolute top-5 left-3 text-red-500 px-[3px] bg-white font-bold text-[16px]'>{cartLength}</span>
+        </NavLink>
         {isLogin
           &&
           <div className='flex items-center justify-center gap-5'>

@@ -13,7 +13,6 @@ const DetailProduct = () => {
   const [data, setData] = useState()
   const [activeImg, setActiveImg] = useState(0)
   const allProduct = useSelector((state) => state.product.product)
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])
@@ -83,7 +82,7 @@ const DetailProduct = () => {
           </div>
 
           <div className='btn_add flex flex-col gap-3'>
-            <ButtonDetail name='Add to Bag' options='bag' />
+            <ButtonDetail name='Add to Bag' options='bag' data={data} />
             <ButtonDetail name='Favourite' />
           </div>
 

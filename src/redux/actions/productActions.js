@@ -1,4 +1,4 @@
-import { getAllProductApi, getOneProductApi, searchProductApi } from "../../api/api"
+import { getOneProductApi } from "../../api/api"
 import { getAllProductFaild, getAllProductSuccess, getOneProductFailed, getOneProductSuccess, getProductSearchFailed, getProductSearchSuccess } from "../reducers/productReducer"
 
 export const getAllProductActions = (res) => async (dispatch) => {
@@ -21,8 +21,8 @@ export const getOneProductActions = (payload) => async (dispatch) => {
 export const ProductSearchActions = (res) => async (dispatch) => {
   try {
     dispatch(getProductSearchSuccess(res))
-    console.log(res)
   } catch (error) {
     dispatch(getProductSearchFailed(error))
   }
 }
+

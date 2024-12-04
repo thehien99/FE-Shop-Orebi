@@ -19,6 +19,6 @@ const Router = {
   update_product: 'update_pd',
   order_product: 'order',
   all_user: 'all_user',
-
+  shopping_cart:'cart'
 }
 export default Router

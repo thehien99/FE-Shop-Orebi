@@ -18,6 +18,7 @@ import authReducer from "./reducers/authReducer"
 import getUserReducer from './reducers/getUserReducer'
 import adminReducer from './reducers/adminReducer'
 import getProduct from './reducers/productReducer'
+import cartReducer from './reducers/cartReducer'
 const persitConfig = {
   key: "auth",
   storage: localStorage,
@@ -35,7 +36,8 @@ const rootReducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
   getUser: getUserReducer,
   admin: adminReducer,
-  product: getProduct
+  product: getProduct,
+  cartReducer: cartReducer
 });
 const persistedReducer = persistReducer(persitConfig, rootReducer);
 

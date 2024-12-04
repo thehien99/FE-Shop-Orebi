@@ -4,7 +4,7 @@ const getProduct = createSlice({
   initialState: {
     product: '',
     productOne: "",
-    productSearch: []
+    productSearch: [],
   },
   reducers: {
     getAllProductSuccess: (state, action) => {
@@ -24,7 +24,8 @@ const getProduct = createSlice({
     },
     getProductSearchFailed: (state) => {
       state.productSearch = null
-    }
+    },
+
   },
 });
 

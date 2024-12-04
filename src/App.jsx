@@ -25,6 +25,7 @@ import PaymentUser from "./components/inforUser/PaymentUser";
 import HistoryShipUser from "./components/inforUser/HistoryShipUser";
 import ItemOrderUser from "./components/inforUser/ItemOrderUser";
 import StatusItemUser from "./components/inforUser/StatusItemUser";
+import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ function App() {
             <Route path={Router.productItem} element={<ProductItem />} />
             <Route path={Router.detail_product} element={<DetailProduct />} />
             <Route path={Router.login} element={<Login />} />
+            <Route path={Router.shopping_cart} element={<ShoppingCart />} />
           </Route>
 
           {/* user */}
@@ -81,7 +83,6 @@ function App() {
             <Route path={Router.historyShip} element={<HistoryShipUser />} />
             <Route path={Router.itemOrder} element={<ItemOrderUser />} />
             <Route path={Router.statusItem} element={<StatusItemUser />} />
-
           </Route>
 
 

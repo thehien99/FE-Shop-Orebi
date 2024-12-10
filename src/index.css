@@ -60,6 +60,8 @@ div.bestseller button {
   .slider_detail .slick-prev {
     left: 0% !important;
   }
+
+  
 }
 
 @layer base {

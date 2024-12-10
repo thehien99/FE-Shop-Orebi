@@ -44,7 +44,7 @@ const AddImage = ({ setPayload }) => {
       imageId: image
     }))
   }, [image])
-  console.log(image)
+
   return (
     <div className='flex flex-col gap-4 w-full' >
       <div>Upload Image</div>

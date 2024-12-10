@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import ButtonDetail from './ButtonDetail'
 import BannerOfDetail from './BannerOfDetail'
-import { useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { getOneProductApi } from '../../api/api'
 import { formatPrice } from '../../lib/utils'
 import HintProductDetail from './HintProductDetail'
 import { useDispatch, useSelector } from 'react-redux'
+import { addProductSuccess, updateProductQuantity } from '../../redux/reducers/cartReducer'
+import Swal from 'sweetalert2'
+import Router from '../../router/router'
+import icon from '../../icons/icons'
 
 const DetailProduct = () => {
-
+  const { FaShoppingCart } = icon
+  const [quanti, setQuantity] = useState(1)
   const { id } = useParams()
   const [data, setData] = useState()
   const [activeImg, setActiveImg] = useState(0)
+  const [cartLength, setCartLength] = useState(0)
   const allProduct = useSelector((state) => state.product.product)
+  const cartProduct = useSelector(state => state.cartReducer.cartProduct)
+  const isLogin = useSelector(state => state.auth.isLogin)
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setCartLength(cartProduct.length)
+  }, [cartProduct])
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])
@@ -32,6 +47,52 @@ const DetailProduct = () => {
   const handleMouseLeave = () => {
     setActiveImg(0)
   }
+
+  const handleDown = () => {
+    setQuantity(quanti <= 1 ? 1 : quanti - 1)
+  }
+  const handelUp = () => {
+    setQuantity(quanti >= 1 ? quanti + 1 : 1)
+  }
+
+  const handleAddProduct = (product) => {
+    if (isLogin) {
+      // Kiểm tra nếu sản phẩm đã có trong giỏ hàng
+      const existingProduct = cartProduct.find((item) => item?.id === product?.id);
+
+      if (existingProduct) {
+        // Nếu sản phẩm đã có, cập nhật số lượng và giá
+        const updatedProduct = {
+          ...existingProduct,
+          quanti: existingProduct.quanti + quanti, // Cộng thêm số lượng
+          priceProduct: (existingProduct.quanti + quanti) * product.price
+        };
+
+        dispatch(updateProductQuantity(updatedProduct)); // Cập nhật lại sản phẩm trong giỏ hàng
+      } else {
+        // Nếu sản phẩm chưa có trong giỏ hàng, thêm sản phẩm mới
+        const priceProduct = product.price * quanti
+        dispatch(addProductSuccess({ ...product, quanti, priceProduct }));
+      }
+    } else {
+      Swal.fire({
+        title: "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng",
+        showClass: {
+          popup: `animate__animated animate__fadeInUp animate__faster`
+        },
+        hideClass: {
+          popup: `animate__animated animate__fadeOutDown animate__faster`
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Navigate to the desired route
+          navigate('/login'); // Replace with the route you want
+        }
+      });
+    }
+  }
+
+
 
   return (
     <div className='product_detail w-full h-full p-6'>
@@ -74,15 +135,28 @@ const DetailProduct = () => {
               Fits large; we recommend ordering half a size down
             </span>
             <ul className='grid grid-cols-4 gap-3'>
-              <li className='p-2 border text-center text-xl rounded-lg cursor-pointer hover:bg-slate-400'>
+              <li className='p-2 border text-center text-xl rounded-lg cursor-pointer hover:bg-slate-400 '>
                 {data?.size}
               </li>
-
             </ul>
+            <div className='relative'>
+              <span>Số lượng</span>
+
+              <NavLink to={`/${Router.shopping_cart}`} className='hidden xs:block fixed z-20 top-[500px] right-2 p-2 border-2 rounded-full'>
+                <FaShoppingCart className='text-xl text-blue-600' />
+                <span className='absolute top-6 left-5 font-medium text-white px-1 bg-black text-2'>{cartLength}</span>
+              </NavLink>
+
+              <div className='flex gap-4 justify-center items-center border-2 w-fit'>
+                <button onClick={handleDown} className='border-e-2 p-1'>-</button>
+                {quanti}
+                <button onClick={handelUp} className='border-s-2 p-1'>+</button>
+              </div>
+            </div>
           </div>
 
           <div className='btn_add flex flex-col gap-3'>
-            <ButtonDetail name='Add to Bag' options='bag' data={data} />
+            <ButtonDetail name='Add to Bag' options='bag' data={{ ...data, quanti }} onAddProduct={handleAddProduct} />
             <ButtonDetail name='Favourite' />
           </div>
 

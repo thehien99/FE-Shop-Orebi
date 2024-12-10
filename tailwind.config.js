@@ -2,7 +2,7 @@
 module.exports = {
 	darkMode: ["class"],
 	content: [
-		'./src/**/*.{html,js,jsx,ts,tsx}',  // Update to your file extensions
+		'./src/**/*.{html,js,jsx,ts,tsx}',  // Cập nhật đúng đường dẫn tới các tệp của bạn
 	],
 	theme: {
 		extend: {

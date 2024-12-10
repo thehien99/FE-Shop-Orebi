@@ -20,7 +20,6 @@ const Header = () => {
     { idx: 1, name: 'Home' },
     { idx: 2, name: 'Shop' },
     { idx: 3, name: 'About' },
-    { idx: 4, name: 'Contact' },
   ]
   const { IoMenu } = icon
   const navigation = useNavigate()
@@ -51,7 +50,7 @@ const Header = () => {
           <div className='hidden xs:block mbl:block'>
             <Sheet>
               <SheetTrigger>
-                <IoMenu />
+                <IoMenu  className='text-red-500 text-2xl'/>
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>

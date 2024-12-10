@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ProductDetailShop from './ProductDetailShop'
 import { motion } from 'framer-motion';
-import icon from '../../icons/icons';
-import { NavLink } from 'react-router-dom';
-import Router from '../../router/router';
-import { useSelector } from 'react-redux';
+
 
 const ListProduct = ({ allProducts }) => {
-  const { FaShoppingCart } = icon
-  const [cartLength, setCartLength] = useState(0)
-  const totalCart = useSelector(state => state.cartReducer.cartProduct)
-
-  useEffect(() => {
-    setCartLength(totalCart.length)
-  }, [totalCart])
 
   return (
     <motion.div
@@ -31,13 +21,9 @@ const ListProduct = ({ allProducts }) => {
           )
         })}
 
-        <NavLink to={`/${Router.shopping_cart}`} className='hidden z-20 xs:block fixed top-[500px] right-2 p-2 border-2 rounded-full'>
-          <FaShoppingCart className='text-xl text-blue-600' />
-          <span className='absolute top-6 left-5 font-medium text-white px-1 bg-black text-2'>{cartLength}</span>
-        </NavLink>
 
       </div >
-    </motion.div>
+    </motion.div >
   )
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Router from '../router/router'
 
 const About = () => {
   const navigate = useNavigate()
@@ -16,7 +15,7 @@ const About = () => {
           essence of classic Worldwide cool looking style.
         </span>
       </div>
-      <Link to={'/Shop'} className='border-2 rounded-md p-2 w-[15%] lg:w-1/3 lg:py-3 bg-black text-white font-bold text-center'>
+      <Link to={'/Shop'} className='border-2 rounded-md p-2 xs:text-sm xs:w-full w-[15%] lg:w-1/3 lg:py-3 bg-black text-white font-bold text-center'>
         Continue Shopping
       </Link>
     </div >

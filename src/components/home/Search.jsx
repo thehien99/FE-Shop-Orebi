@@ -21,22 +21,22 @@ const Search = () => {
   }
 
   return (
-    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center'>
+    <div className='mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:w-full mbl:flex-col mbl:gap-4 items-center'>
       <div className={`${isLogin ? 'w-1/2' : 'w-full'} xs:w-full mbl:w-full'`}>
         <Input placeholder='Search Product' search='search' />
       </div>
-      <div className='cursor-pointer flex justify-center items-center gap-4 xs:hidden'>
+      <div className='cursor-pointer flex justify-center items-center gap-4 '>
         {isLogin && (
           <>
-            <NavLink to={`${Router.shopping_cart}`} className='relative'>
+            <NavLink to={`/${Router.shopping_cart}`} className='relative'>
               <FaShoppingCart className='text-2xl' />
               <span className='absolute top-5 left-3 text-red-500 px-[3px] bg-white font-bold text-[16px]'>{cartLength}</span>
             </NavLink>
             <div className='flex items-center justify-center gap-5'>
               <FaUser className='text-xl' onClick={handleInforUser} />
-              <div className='flex gap-2'>
+              <div className='flex gap-2  xs:text-sm'>
                 Xin chào,
-                <i className='font-bold uppercase font-serif'>
+                <i className='font-bold uppercase font-serif xs:truncate xs:text-center'>
                   {nameUser}
                 </i>
               </div>

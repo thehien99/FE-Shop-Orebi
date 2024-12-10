@@ -24,7 +24,6 @@ const SelectShop = ({ title, sort }) => {
               </div>
             )
           })}
-
         </SelectContent>
       </Select>
     </div>

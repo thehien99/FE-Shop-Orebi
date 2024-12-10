@@ -17,16 +17,11 @@ const DetailProduct = () => {
   const { id } = useParams()
   const [data, setData] = useState()
   const [activeImg, setActiveImg] = useState(0)
-  const [cartLength, setCartLength] = useState(0)
   const allProduct = useSelector((state) => state.product.product)
-  const cartProduct = useSelector(state => state.cartReducer.cartProduct)
   const isLogin = useSelector(state => state.auth.isLogin)
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setCartLength(cartProduct.length)
-  }, [cartProduct])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -141,12 +136,6 @@ const DetailProduct = () => {
             </ul>
             <div className='relative'>
               <span>Số lượng</span>
-
-              <NavLink to={`/${Router.shopping_cart}`} className='hidden xs:block fixed z-20 top-[500px] right-2 p-2 border-2 rounded-full'>
-                <FaShoppingCart className='text-xl text-blue-600' />
-                <span className='absolute top-6 left-5 font-medium text-white px-1 bg-black text-2'>{cartLength}</span>
-              </NavLink>
-
               <div className='flex gap-4 justify-center items-center border-2 w-fit'>
                 <button onClick={handleDown} className='border-e-2 p-1'>-</button>
                 {quanti}

@@ -10,7 +10,6 @@ const Router = {
   detail_product: 'detail/:id',
   login: 'login',
   about: 'about',
-  contact: 'contact',
   productItem: 'item',
   login_admin: 'admin',
   table: '/he-thong',
@@ -19,6 +18,6 @@ const Router = {
   update_product: 'update_pd',
   order_product: 'order',
   all_user: 'all_user',
-  shopping_cart:'cart'
+  shopping_cart: 'cart'
 }
 export default Router

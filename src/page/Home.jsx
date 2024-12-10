@@ -45,18 +45,21 @@ const Home = () => {
       transition={{ type: 'spring', stiffness: 400, damping: 60 }}
     >
       <div className='container '>
-        <div className='border-b-2'>
-          <Header />
-        </div>
-        <div className={`bg-slate-200 ${scrollPosition >= 100 ? 'fixed z-20 w-full top-0' : ''}`}>
-          {location.pathname !== '/login' && < Search />}
+        <div className={`${scrollPosition >= 100 ? 'fixed z-20 w-full top-0 bg-orange-200' : ''}`}>
+
+          <div className='border-b-2'>
+            <Header />
+          </div>
+          <div className='bg-slate-300'>
+            {location.pathname !== '/login' && < Search />}
+          </div>
         </div>
         <Outlet />
         <div className='bg-slate-200'>
           {location.pathname !== '/login' && <Footer />}
         </div>
       </div>
-    </motion.div>
+    </motion.div >
   )
 }
 

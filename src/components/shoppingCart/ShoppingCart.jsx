@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { TableCart } from './TableCart'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import Router from '../../router/router'
+
 const ShoppingCart = () => {
   const cartProduct = useSelector(state => state.cartReducer.cartProduct)
   const [dataProduct, setDataProduct] = useState(cartProduct)

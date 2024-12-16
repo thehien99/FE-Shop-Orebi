@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from '../../lib/utils';
-const ProductDetailShop = ({ img, name, price, description, id }) => {
+const ProductDetailShop = ({ img, name, price, description, id, totalSock }) => {
+  console.log(totalSock)
   const navigate = useNavigate()
   const uppercaseFrist = description?.charAt(0).toUpperCase() + description.slice(1)
 
   const handleNextPage = () => {
-    navigate(`/detail/${id}`); // Điều hướng tới router với id
+    navigate(`/detail/${id}`, { state: { total: totalSock } }) // Điều hướng tới router với id
   }
   return (
     <div onClick={handleNextPage} className=' w-full relative rounded-md cursor-pointer'>
@@ -20,7 +21,7 @@ const ProductDetailShop = ({ img, name, price, description, id }) => {
         </div>
       </div>
 
-      <div className='w-full h-full'>
+      <div className='w-full h-full relative'>
         <div className='border'>
           <img src={img[0]} alt="" className='w-full h-[300px] object-cover' />
         </div>

@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { formatPrice } from '../../lib/utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeAllProduct, removeProduct, updateProductQuantity } from '../../redux/reducers/cartReducer';
+import { removeAllProduct, removeProduct } from '../../redux/reducers/cartReducer';
+import { useNavigate } from 'react-router-dom';
+import Router from '../../router/router';
 
 export const TableCart = ({ cartProduct }) => {
   const dispatch = useDispatch()
@@ -10,6 +12,16 @@ export const TableCart = ({ cartProduct }) => {
   const [totalPrice, setTotalPrice] = useState(0)
   const [toggleCleared, setToggleCleared] = useState(false);
   const [data, setData] = useState(cartProduct);
+  const totalProduct = useSelector((state) => state.cartReducer.cartProduct)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   const columns = [
     {
       name: <span className='text-xl font-bold'>Hình ảnh</span>,
@@ -50,14 +62,13 @@ export const TableCart = ({ cartProduct }) => {
     {
       name: <span className='text-xl font-bold'>Xóa đơn hàng</span>,
       selector: row => (
-        <button onClick={() => (
-          dispatch(removeProduct(row.id))
-        )} className='p-1 border-2 bg-red-600 text-white hover:bg-blue-500 hover:text-black'>Xóa</button>
+        <button onClick={() => (dispatch(removeProduct(row.id)))}
+          className='p-1 border-2 bg-red-600 text-white hover:bg-blue-500 hover:text-black'>
+          Xóa
+        </button>
       ),
     },
   ];
-  const totalProduct = useSelector((state) => state.cartReducer.cartProduct)
-  console.log(totalProduct)
 
   useEffect(() => {
     const totalPriceSum = totalProduct.reduce((sum, product) => {
@@ -75,6 +86,7 @@ export const TableCart = ({ cartProduct }) => {
   const handleRowSelected = useCallback(state => {
     setSelectedRows(state.selectedRows);
   }, []);
+
   const contextActions = useMemo(() => {
 
     const handleDelete = () => {
@@ -89,6 +101,9 @@ export const TableCart = ({ cartProduct }) => {
     );
   }, [data, selectedRows, toggleCleared]);
 
+  const handleOderPage = () => {
+    navigate(`/${Router.order_page}`, { state: { selectedRows: selectedRows } })
+  }
   return (
     <div>
       {cartProduct.length === 0 ? (
@@ -118,6 +133,7 @@ export const TableCart = ({ cartProduct }) => {
           {formatPrice(totalPrice)}vnd
         </span>
       </div>
+      <button onClick={handleOderPage} className='mt-2 p-2 border-2 w-fit bg-red-500 text-white'>Đặt hàng</button>
     </div>
   )
 }

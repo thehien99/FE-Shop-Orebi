@@ -14,6 +14,7 @@ import {
 import icon from '../../icons/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutActions } from '../../redux/actions/authActions';
+
 import { axiosClient } from '../../axios/axios';
 const Header = () => {
   const menuHeader = [
@@ -40,17 +41,17 @@ const Header = () => {
   }
   return (
     <div className='mx-6 p-6'>
-      <div className='w-full h-full flex justify-between items-center xs:justify-between'>
-        <div onClick={handleHome}>
+      <div className={`w-full h-full flex justify-between items-center  xs:justify-between`}>
+        <div onClick={handleHome} >
           <img src={image} alt="" />
         </div>
         <div className='text-lg text-slate-500 font-medium '>
 
           {/* reponsive */}
-          <div className='hidden xs:block mbl:block'>
+          <div className={`hidden xs:flex mbl:block`}>
             <Sheet>
               <SheetTrigger>
-                <IoMenu  className='text-red-500 text-2xl'/>
+                <IoMenu className='text-red-500 text-4xl' />
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>

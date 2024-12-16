@@ -8,14 +8,14 @@ import About from "./page/About";
 import ProductItem from "./components/products/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getUserActions } from "./redux/actions/authActions";
+import { getAddressActions, getUserActions } from "./redux/actions/authActions";
 import TableManager from "./page/admin/TableManager";
 import LoginAdmin from "./page/admin/LoginAdmin";
 import AddProduct from "./page/admin/addProduct/AddProduct";
 import Allproduct from "./page/admin/allProduct/Allproduct";
 import UpdateProduct from "./page/admin/updateProduct/UpdateProduct";
 import { getAllProductActions } from "./redux/actions/productActions";
-import { getAllProductApi } from "./api/api";
+import { getAddress, getAllProductApi } from "./api/api";
 import Loading from "./components/Loading";
 import { loginSuccess } from "./redux/reducers/authReducer";
 import DetailProduct from "./components/products/DetailProduct";
@@ -26,17 +26,19 @@ import HistoryShipUser from "./components/inforUser/HistoryShipUser";
 import ItemOrderUser from "./components/inforUser/ItemOrderUser";
 import StatusItemUser from "./components/inforUser/StatusItemUser";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
-
+import OrderPage from "./page/orderPage/OrderPage";
+import { getAllOrderActions } from './redux/actions/orderActions'
 function App() {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
-  const isLoginAdmin = useSelector(state => state.admin.isLogin)
   const [loading, setLoading] = useState(true); // Mặc định là `true`
 
   // Lấy thông tin người dùng nếu đã login
   useEffect(() => {
     if (isLogin) {
       dispatch(getUserActions());
+      dispatch(getAddressActions())
+      dispatch(getAllOrderActions())
     }
   }, [isLogin]);
 
@@ -74,10 +76,13 @@ function App() {
             <Route path={Router.detail_product} element={<DetailProduct />} />
             <Route path={Router.login} element={<Login />} />
             <Route path={Router.shopping_cart} element={<ShoppingCart />} />
+            <Route path={Router.order_page} element={<OrderPage />} />
           </Route>
 
           {/* user */}
           <Route path={Router.infoUser} element={<InforUser />} >
+            <Route index element={<GeneralUser />} />
+
             <Route path={Router.general_user} element={<GeneralUser />} />
             <Route path={Router.payment} element={<PaymentUser />} />
             <Route path={Router.historyShip} element={<HistoryShipUser />} />

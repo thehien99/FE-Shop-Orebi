@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import ButtonDetail from './ButtonDetail'
 import BannerOfDetail from './BannerOfDetail'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getOneProductApi } from '../../api/api'
 import { formatPrice } from '../../lib/utils'
 import HintProductDetail from './HintProductDetail'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductSuccess, updateProductQuantity } from '../../redux/reducers/cartReducer'
 import Swal from 'sweetalert2'
-import Router from '../../router/router'
-import icon from '../../icons/icons'
 
 const DetailProduct = () => {
-  const { FaShoppingCart } = icon
-  const [quanti, setQuantity] = useState(1)
+
+  const [quanti, setQuantity] = useState(null || 1)
   const { id } = useParams()
   const [data, setData] = useState()
   const [activeImg, setActiveImg] = useState(0)
   const allProduct = useSelector((state) => state.product.product)
+  const cartProduct = useSelector(state => state.cartReducer.cartProduct)
   const isLogin = useSelector(state => state.auth.isLogin)
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
-
+  const location = useLocation()
+  const { total } = location.state
+  console.log(total)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])
@@ -88,7 +88,6 @@ const DetailProduct = () => {
   }
 
 
-
   return (
     <div className='product_detail w-full h-full p-6'>
       <div className='grid grid-cols-2 mbl:grid-cols-1 gap-8 h-full'>
@@ -107,7 +106,12 @@ const DetailProduct = () => {
             </div>
             {data?.productImg?.image[activeImg]?.map((item, idx) => {
               return (
-                <img key={idx} className='rounded-md w-[70%] mbl:w-full h-[550px] object-cover' src={item} alt="" />
+                <div className='relative' key={idx}>
+                  {data.totalSock < 0 &&
+                    <div className='p-3 border-2 rounded-md text-center font-bold text-2xl text-red-600 bg-slate-200 absolute w-full top-1/2'>Tạm hết hàng</div>
+                  }
+                  <img className='rounded-md w-full mbl:w-full h-[550px] object-cover' src={item} alt="" />
+                </div>
               )
             })}
           </div>
@@ -134,6 +138,8 @@ const DetailProduct = () => {
                 {data?.size}
               </li>
             </ul>
+
+
             <div className='relative'>
               <span>Số lượng</span>
               <div className='flex gap-4 justify-center items-center border-2 w-fit'>
@@ -145,7 +151,14 @@ const DetailProduct = () => {
           </div>
 
           <div className='btn_add flex flex-col gap-3'>
-            <ButtonDetail name='Add to Bag' options='bag' data={{ ...data, quanti }} onAddProduct={handleAddProduct} />
+            {total < 0 ?
+              <button className='p-3 border-2 rounded-2xl font-bold text-xl bg-slate-300 cursor-not-allowed'>Tạm hết hàng</button>
+              :
+              <ButtonDetail name='Add to Bag' options='bag' data={{ ...data, quanti }}
+                onAddProduct={handleAddProduct}
+              />
+            }
+
             <ButtonDetail name='Favourite' />
           </div>
 

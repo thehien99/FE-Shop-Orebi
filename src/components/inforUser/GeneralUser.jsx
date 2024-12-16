@@ -5,6 +5,7 @@ import { createAddress, getAddress, updateUser } from '../../api/api'
 import { getAddressActions, getUserActions } from '../../redux/actions/authActions'
 import Swal from 'sweetalert2'
 import { getAddressSuccess, getUserSuccess } from '../../redux/reducers/getUserReducer'
+import { Outlet } from 'react-router-dom'
 
 const GeneralUser = () => {
   const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const GeneralUser = () => {
     const res = await createAddress({
       userId: userInfo.id,
       phone: e.phone,
-      address: e.address
+      address: e.address,
     })
 
     if (res) {
@@ -43,7 +44,6 @@ const GeneralUser = () => {
       phone: e.phone,
       address: e.address
     })
-    console.log(res)
     if (res) {
       dispatch(getAddressActions())
       Swal.fire({
@@ -64,12 +64,12 @@ const GeneralUser = () => {
           <span className='text-lg text-[#FF0000]'>{payload?.name ? payload.name : 'không có'}</span>
         </div>
         <div className='flex gap-4 border-b-2 p-2 items-center'>
-          Số điện thoại:
+          SĐT:
           <span className='text-lg text-[#00ff00]'>{payload?.phone ? payload.phone : 'không có'}</span>
         </div>
-        <div className='flex gap-4 border-b-2 p-2 items-center'>
+        <div className='flex gap-4 border-b-2 p-2 items-center mbl:flex-col mbl:items-start'>
           Địa chỉ giao hàng:
-          <span className='text-lg text-[#0000ff]'>{payload?.address ? payload.address : 'không có'}</span>
+          <span className='text-lg text-[#0000ff]'>{payload?.address ? payload.address : 'không có'}đường số 3 khu phố 1 phường tam bình thủ đức hồ chí minh</span>
         </div>
         <div>
         </div>

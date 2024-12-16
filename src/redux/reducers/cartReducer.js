@@ -34,7 +34,8 @@ const cartReducer = createSlice({
     removeAllProduct: (state, action) => {
       state.cartProduct = []
       localStorage.setItem('cart', state.cartProduct)
-    },
+    }
+
   },
 });
 

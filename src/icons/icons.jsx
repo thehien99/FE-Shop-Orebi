@@ -18,11 +18,12 @@ import { FaUser } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { MdPostAdd } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
-import { FaShoppingBasket } from "react-icons/fa";
+import { FaShoppingBasket, FaPencilAlt } from "react-icons/fa";
 import { LuBellRing } from "react-icons/lu";
 import { FaRegMessage } from "react-icons/fa6";
 
 const icon = {
+  FaPencilAlt,
   FaRegMessage,
   LuBellRing,
   FaShoppingBasket,

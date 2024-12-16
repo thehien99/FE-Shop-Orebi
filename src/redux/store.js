@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import {
   FLUSH,
@@ -19,6 +18,8 @@ import getUserReducer from './reducers/getUserReducer'
 import adminReducer from './reducers/adminReducer'
 import getProduct from './reducers/productReducer'
 import cartReducer from './reducers/cartReducer'
+import orderReducer from './reducers/orderReducer'
+
 const persitConfig = {
   key: "auth",
   storage: localStorage,
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   getUser: getUserReducer,
   admin: adminReducer,
   product: getProduct,
-  cartReducer: cartReducer
+  cartReducer: cartReducer,
+  getOrder: orderReducer
 });
 const persistedReducer = persistReducer(persitConfig, rootReducer);
 

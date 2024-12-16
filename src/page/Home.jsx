@@ -38,6 +38,7 @@ const Home = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
   return (
     <motion.div
       initial={{ y: -60 }}
@@ -45,14 +46,15 @@ const Home = () => {
       transition={{ type: 'spring', stiffness: 400, damping: 60 }}
     >
       <div className='container '>
-        <div className={`${scrollPosition >= 100 ? 'fixed z-20 w-full top-0 bg-orange-200' : ''}`}>
-
+        <div className={` ${scrollPosition >= 100 ? 'fixed z-20 w-full top-0 bg-white' : ''}`}>
           <div className='border-b-2'>
             <Header />
           </div>
-          <div className='bg-slate-300'>
+          
+          <div className='bg-slate-300' >
             {location.pathname !== '/login' && < Search />}
           </div>
+
         </div>
         <Outlet />
         <div className='bg-slate-200'>

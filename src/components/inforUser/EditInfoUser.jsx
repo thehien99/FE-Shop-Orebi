@@ -15,7 +15,7 @@ export function EditInfoUser({ payload, setPayload, onCreate, onUpdate }) {
       <DialogTrigger asChild>
         <button variant="outline" className='bg-red-500 p-3 text-xl font-bold text-white hover:bg-blue-500 rounded-lg'>Edit Profile</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] w-full">
+      <DialogContent className="sm:max-w-[425px] mbl:w-[96%] rounded-xl w-full">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
         </DialogHeader>

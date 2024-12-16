@@ -148,3 +148,37 @@ export const getAddress = () => {
     }
   })
 }
+
+export const orderProductApi = (payload) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'post',
+        url: 'orderProduct',
+        data: {
+          items: payload.clearValueNull,
+          userId: payload.userId,
+          shippingAddressId: payload.shippingAddressId,
+          paymentMethod: 'COD'
+        }
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const getAllOrder = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'get',
+        url: 'getAllOrder'
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}

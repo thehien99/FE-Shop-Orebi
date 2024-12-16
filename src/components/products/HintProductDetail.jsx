@@ -37,8 +37,8 @@ const HintProductDetail = ({ allProduct }) => {
     ]
   };
   const navigate = useNavigate()
-  const handleNextPage = (id) => {
-    navigate(`/detail/${id}`)
+  const handleNextPage = (item) => {
+    navigate(`/detail/${item?.id}`, { state: { total: item?.totalSock } })
   }
   return (
     <div className='hint'>
@@ -48,7 +48,7 @@ const HintProductDetail = ({ allProduct }) => {
         <Slider {...settings}>
           {allProduct?.map((item, idx) => {
             return (
-              <div onClick={() => handleNextPage(item?.id)} className='cursor-pointer' key={idx}>
+              <div onClick={() => handleNextPage(item)} className='cursor-pointer' key={idx}>
                 <div className='img'>
                   <img src={item?.image[0]} className='h-[300px] w-[95%] mbl:w-full object-cover rounded-md' alt="" />
                 </div>

@@ -3,11 +3,16 @@ import SliderHome from '../components/home/SliderHome'
 import ProductHome from '../components/home/ProductHome'
 import BannerHome from '../components/home/BannerHome'
 import Banner from '../components/home/Banner'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAddressActions } from '../redux/actions/authActions'
 
 
 const HomePage = () => {
   const allProducts = useSelector(state => state.product.product)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAddressActions())
+  }, [])
   return (
     <div>
       <div className='w-full h-full'>
@@ -30,7 +35,7 @@ const HomePage = () => {
       </div>
 
       {allProducts.length > 1 &&
-        <div className='xs:mt-44'>
+        <div className='xs:mt-2'>
           <ProductHome title='Special Offers' />
         </div>
       }

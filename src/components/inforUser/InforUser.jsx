@@ -29,7 +29,7 @@ const InforUser = () => {
       </div>
       <div className='infor_user w-full h-full p-6'>
 
-        <div className='border-2 rounded-xl'>
+        <div className='border-2 rounded-xl shadow-2xl'>
           <div className='mbl:flex  mbl:justify-around mbl:items-center mbl:border-b-2'>
             <div className='hidden mbl:block mbl:mt-3'> <Dropmenu menuInfo={menuInfo} /></div>
             {

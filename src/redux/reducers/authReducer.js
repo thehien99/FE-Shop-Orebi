@@ -11,7 +11,8 @@ const authReducer = createSlice({
   },
   reducers: {
     loginSuccess: (state, action) => {
-      state.token = localStorage.setItem('token', action.payload.accessToken)
+      state.token = action.payload.accessToken
+      localStorage.setItem('token', action.payload.accessToken)
       state.payload = action.payload.msg
       state.isLogin = !!action.payload.accessToken
     },

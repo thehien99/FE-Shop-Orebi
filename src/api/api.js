@@ -182,3 +182,66 @@ export const getAllOrder = () => {
     }
   })
 }
+
+
+export const deleteProductApi = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'delete',
+        url: 'deleteProduct',
+        data: { id: id }
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+
+export const getAllOrderAdminApi = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'get',
+        url: 'getAllOrderAdmin'
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const getAllUserAdmin = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'get',
+        url: 'getAllUser'
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const updateIsDeliveredApi = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'post',
+        url: 'updateIsDelivered',
+        data: {
+          productId: id,
+          isDelivered: true
+        }
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}

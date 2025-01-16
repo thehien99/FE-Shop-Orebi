@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie"; // Thư viện lưu cookie
+import { Navigate } from "react-router-dom";
 
 export const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_KEY,
@@ -21,48 +22,80 @@ axiosClient.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-axiosClient.interceptors.response.use(
-  (response) => response.data, // Thành công, trả về response data
-  async function (error) {
-    const originalRequest = error.config;
+let isRefreshing = false //Trạng thái làm mới token
 
-    // Nếu lỗi 401 (Unauthorized) và chưa retry
+let refreshSubscribes = [] //Danh sách các api đang chờ token mới sẵn sàng
+
+const onRefreshed = (token) => {
+  refreshSubscribes.forEach((callback) => callback(token)) //cập nhật token mới cho các api đang chờ
+  refreshSubscribes = [] //Xóa danh sách chờ khi call api xong
+}
+
+const addRefreshSubscribes = (callback) => {
+  refreshSubscribes.push(callback) //Thêm api mới vào danh sách chờ
+}
+
+
+axiosClient.interceptors.response.use(
+  (response) => response.data, // trả về data nếu ko có lỗi
+
+  //xử lí nếu có lỗi 
+  async function (error) {
+
+    const originalRequest = error.config //api đầu tiên gây ra lỗi
+
     if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true; // Đánh dấu đã retry để tránh vòng lặp vô hạn
+      originalRequest._retry = true //Đánh dấu các api đã được thử lại
+
+      if (!localStorage.getItem('token')) {
+        return Promise.reject(error) //người dùng đã đăng xuất
+      }
+
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          addRefreshSubscribes((token) => {
+            originalRequest.headers["Authorization"] = `Bearer ${token}`;
+            resolve(axiosClient(originalRequest)) //gửi lại các yêu cầu kèm theo token mới
+          })
+        })
+      }
+
+      isRefreshing = true //Bắt đầu làm mới token
 
       try {
-        // Lấy refreshToken từ cookies
-        const refreshToken = Cookies.get('refreshToken');
-        if (!refreshToken) {
-          throw new Error('Refresh token not found!');
-        }
-
-        // Gửi request lên BE để lấy accessToken mới
         const res = await axiosClient({
           method: 'post',
           url: 'rftk',
-          withCredentials: true, // Bật để gửi cookie refreshToken
+          withCredentials: true
         })
 
-        const { accessToken } = res; // Lấy accessToken mới từ BE
+        const { accessToken } = res //lấy token mới từ res
 
-        // // Lưu accessToken mới vào cookie (hoặc localStorage nếu cần)
-        localStorage.setItem('token', accessToken);
+        if (accessToken) {
+          localStorage.setItem("token", accessToken)
+          axiosClient.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
+        }
 
-        // // Cập nhật accessToken mới vào headers
-        axiosClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        isRefreshing = false //đặt lại trạng thái làm mới token
+        onRefreshed(accessToken) // cập nhật token mới cho các api đang chờ
 
-        // // Thực hiện lại request ban đầu
-        return axiosClient(originalRequest);
+        return axiosClient(originalRequest) //gửi lại các api ban đầu
+
       } catch (refreshError) {
-        // Nếu refreshToken không hợp lệ hoặc xảy ra lỗi
-        console.error('Refresh token error:', refreshError);
-        return Promise.reject(refreshError);
+        isRefreshing = false
+
+        if (refreshError.response?.status === 403) {
+          localStorage.removeItem('token')
+          document.cookie = "refreshToken=; Max-Age=0; path=/;"; // Xóa refresh token.
+          window.location.href = "/login"
+        }
+
+        return Promise.reject(refreshError); // Trả về lỗi nếu làm mới thất bại.
       }
     }
 
-    // Nếu không phải lỗi 401, hoặc request đã retry, trả lỗi ban đầu
-    return Promise.reject(error);
+    return Promise.reject(error); // Trả về lỗi nếu không phải lỗi 401.
   }
-);
+)
+
+

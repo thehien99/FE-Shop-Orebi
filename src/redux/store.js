@@ -19,11 +19,13 @@ import adminReducer from './reducers/adminReducer'
 import getProduct from './reducers/productReducer'
 import cartReducer from './reducers/cartReducer'
 import orderReducer from './reducers/orderReducer'
+import notificationReducer from './reducers/notiAdminReducer'
+import getAllUserReducer from './reducers/getAllUserReducer'
 
 const persitConfig = {
   key: "auth",
   storage: localStorage,
-  whitelist: ['auth'],
+  whitelist: ['isLogin'],
   stateReconciler: autoMergeLevel2,
 };
 const authConfig = {
@@ -39,7 +41,9 @@ const rootReducer = combineReducers({
   admin: adminReducer,
   product: getProduct,
   cartReducer: cartReducer,
-  getOrder: orderReducer
+  getOrder: orderReducer,
+  notification: notificationReducer,
+  getAllUser: getAllUserReducer
 });
 const persistedReducer = persistReducer(persitConfig, rootReducer);
 

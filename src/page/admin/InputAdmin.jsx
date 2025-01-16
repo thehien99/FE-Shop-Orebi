@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const InputAdmin = ({ payload, setPayload, keyPayload, dataOneProduct }) => {
@@ -8,7 +8,7 @@ const InputAdmin = ({ payload, setPayload, keyPayload, dataOneProduct }) => {
       <input
         id={keyPayload}
         onChange={(e) => setPayload((prev) => ({ ...prev, [keyPayload]: e.target.value }))}
-        value={location.state === 'Đăng sản phẩm' ? payload : dataOneProduct}
+        value={payload}
         type="text"
         className={`border-2 p-2 rounded-md w-full  `}
       />

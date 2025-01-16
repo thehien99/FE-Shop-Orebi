@@ -17,7 +17,7 @@ const Search = () => {
     setCartLength(totalCart.length)
   }, [totalCart])
   const handleInforUser = () => {
-    navigate(Router.infoUser)
+    navigate(`/${Router.infoUser}`)
   }
 
   return (

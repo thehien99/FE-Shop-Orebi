@@ -23,7 +23,6 @@ const AddProduct = () => {
     new Promise(async (resolve, reject) => {
       try {
         const val = validateProduct(payload, setValid)
-        console.log(val)
         if (val) {
           const res = await axiosClient({
             method: 'post',
@@ -57,11 +56,10 @@ const AddProduct = () => {
       }
     })
   }
-  console.log(payload)
   return (
     <div className='p-8 lg:p-[4px] lg:px-6 w-full h-full bg-slate-200'>
       <div className='text-2xl font-bold'>
-        Add Product
+        Thêm sản phẩm
       </div>
       <div className='grid grid-cols-2 xs:grid-cols-1 py-6 lg:py-3 gap-6'>
         <div className='border rounded-lg bg-[#ffff] shadow-xl p-6 lg:p-5'>

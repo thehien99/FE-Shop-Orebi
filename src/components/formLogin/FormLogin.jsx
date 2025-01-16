@@ -9,8 +9,8 @@ import { loginActions, registerActions } from '../../redux/actions/authActions'
 import { validate } from '../../validate/validate'
 import { loginAdminActions } from '../../redux/actions/adminActions'
 import InputLogin from './InputLogin'
-const FormLogin = ({ options }) => {
 
+const FormLogin = ({ options }) => {
   const [payload, setPayload] = useState({
     name: '',
     emailOrPhone: '',
@@ -27,6 +27,7 @@ const FormLogin = ({ options }) => {
   const isLogin = useSelector(state => state.auth.isLogin)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const handleSignup = () => {
     setFlag(!flag)
   }
@@ -42,6 +43,7 @@ const FormLogin = ({ options }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const val = validate(payload, setValid)
+
     if (val) {
       if (options) {
         dispatch(loginAdminActions(payload))
@@ -57,8 +59,10 @@ const FormLogin = ({ options }) => {
   const handleChange = (e) => {
     setSelectedOption(e.target.value); // Cập nhật state với giá trị đã chọn
   };
+
+
   return (
-    <Card className="mx-auto max-w-sm  translate-y-[15%] md:translate-x-1/2 md:translate-y-[15%] xs:translate-x-0 xs:translate-y-20">
+    <Card className={`${options ? 'xs:m-3 xs:translate-y-1/2 xs:border-2 xs:shadow-2xl' : 'mx-auto max-w-sm  translate-y-[15%] md:translate-x-1/2 md:translate-y-[15%] xs:translate-x-0 xs:translate-y-20'}`}>
       <CardHeader className="space-y-1">
         {options ? (<div>
           <CardTitle className="text-2xl font-bold text-red-400">

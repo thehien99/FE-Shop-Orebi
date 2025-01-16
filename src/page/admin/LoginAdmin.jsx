@@ -5,7 +5,7 @@ import { loginSuccess } from '../../redux/reducers/adminReducer'
 
 const LoginAdmin = () => {
   const dispatch = useDispatch()
-  const checkToken = localStorage.getItem('admin')
+  const checkToken = localStorage.getItem('token')
   useEffect(() => {
     if (checkToken) {
       dispatch(loginSuccess({

@@ -12,9 +12,9 @@ const authReducer = createSlice({
   reducers: {
     loginSuccess: (state, action) => {
       state.token = action.payload.accessToken
-      localStorage.setItem('token', action.payload.accessToken)
       state.payload = action.payload.msg
       state.isLogin = !!action.payload.accessToken
+      localStorage.setItem('token', action.payload.accessToken)
     },
     loginFailed: (state, action) => {
       state.payload = action.payload;
@@ -29,10 +29,12 @@ const authReducer = createSlice({
       state.isLogin = false
     },
     logoutSuccess: (state) => {
-      state.token = localStorage.removeItem('token')
-      state.payload = null
-      state.isLogin = false
+      state.token = null; // Xóa token trong state
+      state.isLogin = false; // Cập nhật trạng thái đăng xuất
+      state.payload = null;
+      localStorage.removeItem('token')
     },
+
   },
 });
 

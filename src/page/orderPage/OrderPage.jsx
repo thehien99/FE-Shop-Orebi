@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import { removeProduct } from '../../redux/reducers/cartReducer'
 import { orderProductApi } from '../../api/api'
 
-
 const OrderPage = () => {
   const { FaPencilAlt } = icon
   const location = useLocation()
@@ -31,6 +30,7 @@ const OrderPage = () => {
     }
   }, [selectedRows])
 
+  //Xóa các giá trị bằng null trước khi request lên server
   const clearValueNull = selectedRows.map((item) => {
     const newItem = { ...item }
     Object.keys(newItem).forEach((key) => {
@@ -41,8 +41,10 @@ const OrderPage = () => {
     return newItem
   })
 
+
   const handleOrder = async () => {
     const order = await orderProductApi({ clearValueNull, userId: userId, shippingAddressId: addressId })
+    console.log(order)
     if (order.msg === 'Create success') {
       Swal.fire({
         title: "Đặt đơn hàng thành công",

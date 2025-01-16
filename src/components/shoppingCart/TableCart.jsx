@@ -88,7 +88,6 @@ export const TableCart = ({ cartProduct }) => {
   }, []);
 
   const contextActions = useMemo(() => {
-
     const handleDelete = () => {
       dispatch(removeAllProduct())
       setData(cartProduct)
@@ -104,6 +103,8 @@ export const TableCart = ({ cartProduct }) => {
   const handleOderPage = () => {
     navigate(`/${Router.order_page}`, { state: { selectedRows: selectedRows } })
   }
+
+  
   return (
     <div>
       {cartProduct.length === 0 ? (

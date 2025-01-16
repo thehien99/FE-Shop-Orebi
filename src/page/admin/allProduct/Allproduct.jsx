@@ -1,9 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
-import { getAllProductApi } from "../../../api/api";
+import { deleteProductApi, getAllProductApi } from "../../../api/api";
 import UpdateProduct from "../updateProduct/UpdateProduct";
 
 function Allproduct() {
+
+  const [filterText, setFilterText] = useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const [data, setData] = useState([]);
+
   const columns = [
     {
       name: 'Tên sản phẩm',
@@ -37,8 +42,16 @@ function Allproduct() {
         <UpdateProduct id={row?.id} />
       ),
     },
+    {
+      name: "Xóa",
+      button: 'true',
+      cell: (row) => (
+        <button onClick={() => handleDeleteProduct(row.id)} className="border-2 w-1/2 p-2 rounded-xl bg-blue-500 text-white hover:text-red-500">X</button>
+      )
+    },
 
   ];
+
 
   const customStyles = {
     headCells: {
@@ -49,9 +62,6 @@ function Allproduct() {
     },
   };
 
-  const [filterText, setFilterText] = useState("");
-  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -99,6 +109,16 @@ function Allproduct() {
     );
   }, [filterText, resetPaginationToggle]);
 
+
+  const handleDeleteProduct = async (id) => {
+    const dataAfterClear = data.filter((item) => item.id !== id)
+    setData(dataAfterClear)
+    const res = await deleteProductApi(id)
+    if (res.code === 1) {
+      const res = await getAllProductApi()
+      setData(res)
+    }
+  }
   return (
     <DataTable
       columns={columns}

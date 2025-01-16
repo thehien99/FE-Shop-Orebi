@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { EditInfoUser } from './EditInfoUser'
-import { createAddress, getAddress, updateUser } from '../../api/api'
+import { createAddress, updateUser } from '../../api/api'
 import { getAddressActions, getUserActions } from '../../redux/actions/authActions'
 import Swal from 'sweetalert2'
-import { getAddressSuccess, getUserSuccess } from '../../redux/reducers/getUserReducer'
-import { Outlet } from 'react-router-dom'
 
 const GeneralUser = () => {
   const dispatch = useDispatch()
@@ -69,7 +67,7 @@ const GeneralUser = () => {
         </div>
         <div className='flex gap-4 border-b-2 p-2 items-center mbl:flex-col mbl:items-start'>
           Địa chỉ giao hàng:
-          <span className='text-lg text-[#0000ff]'>{payload?.address ? payload.address : 'không có'}đường số 3 khu phố 1 phường tam bình thủ đức hồ chí minh</span>
+          <span className='text-lg text-[#0000ff]'>{payload?.address ? payload.address : 'không có'}</span>
         </div>
         <div>
         </div>

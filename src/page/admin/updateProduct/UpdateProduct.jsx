@@ -2,19 +2,16 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import FormProduct from '../addProduct/FormProduct'
-import { memo, useEffect, useState } from "react"
+import { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 import { getOneProductActions } from "../../../redux/actions/productActions"
-import { getOneProductApi } from "../../../api/api"
+
 function UpdateProduct({ id }) {
   const [payload, setPayload] = useState({
     name: '',
@@ -28,6 +25,7 @@ function UpdateProduct({ id }) {
   })
 
   const dispatch = useDispatch()
+  
   const handleCallApi = () => {
     dispatch(getOneProductActions(id))
   }

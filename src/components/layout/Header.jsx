@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { image } from '../../asset/img'
-import { Link, NavLink, Route, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Router from '../../router/router'
 import { motion } from 'framer-motion';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import icon from '../../icons/icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutActions } from '../../redux/actions/authActions';
+import Cookies from 'js-cookie'
 
-import { axiosClient } from '../../axios/axios';
 const Header = () => {
   const menuHeader = [
     { idx: 1, name: 'Home' },
@@ -29,16 +27,19 @@ const Header = () => {
   const handleHome = () => {
     navigation(Router.home)
   }
+
   const handleAuth = () => {
     if (isLogin) {
-      dispatch(logoutActions())
-      delete axiosClient.defaults.headers['Authorization'];
-      navigation(Router.home)
+      dispatch(logoutActions());
+      localStorage.removeItem("token");
+      Cookies.remove("refreshToken", { path: "/", domain: "yourdomain.com" });
+      navigation(Router.home);
+    } else {
+      navigation(Router.login);
+    }
+  };
 
-    } else (
-      navigation(Router.login)
-    )
-  }
+
   return (
     <div className='mx-6 p-6'>
       <div className={`w-full h-full flex justify-between items-center  xs:justify-between`}>

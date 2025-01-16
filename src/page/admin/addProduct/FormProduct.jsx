@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import SelectColor from '../SelectColor';
-import Swal from 'sweetalert2'
 import InputAdmin from '../InputAdmin';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 const FormProduct = ({ valid, payload, setPayload }) => {
   const dataOneProduct = useSelector(state => state.product.productOne)
-  console.log(dataOneProduct)
   const location = useLocation()
   const [size, setSize] = useState(location.state === 'Đăng sản phẩm' ? payload?.size : dataOneProduct?.size)
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-  const handleSetSize = (e) => {
-    setSize(e.target.value)
-  }
+
+
   useEffect(() => {
     setPayload((prev) => ({
       ...prev,
       size: size
     }))
   }, [size])
+
+  const handleSetSize = (e) => {
+    setSize(e.target.value)
+  }
 
   return (
     <form className='flex flex-col gap-5'>
@@ -61,7 +62,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
         </div>
 
       </div>
-
+      {/* 
       <div className='flex flex-col gap-3'>
         <label htmlFor="size">Chọn Kích Cỡ:</label>
         <select
@@ -78,7 +79,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div className='flex flex-col gap-2'>
         <div>Màu sản phẩm</div>
@@ -92,7 +93,7 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             <i className='ms-2 text-red-500'>{valid.description}</i>
           }
         </span>
-        <textarea name="" value={location?.state === 'Đăng sản phẩm' ? payload?.description : dataOneProduct?.description} onChange={(e) => setPayload((prev) => (
+        <textarea name="" value={payload?.description} onChange={(e) => setPayload((prev) => (
           {
             ...prev,
             description: e.target.value

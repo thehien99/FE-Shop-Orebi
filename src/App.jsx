@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./page/Home";
 import Router from "./router/router";
 import Login from "./page/Login";
@@ -15,9 +15,8 @@ import AddProduct from "./page/admin/addProduct/AddProduct";
 import Allproduct from "./page/admin/allProduct/Allproduct";
 import UpdateProduct from "./page/admin/updateProduct/UpdateProduct";
 import { getAllProductActions } from "./redux/actions/productActions";
-import { getAddress, getAllProductApi } from "./api/api";
+import { getAllProductApi } from "./api/api";
 import Loading from "./components/Loading";
-import { loginSuccess } from "./redux/reducers/authReducer";
 import DetailProduct from "./components/products/DetailProduct";
 import InforUser from "./components/inforUser/InforUser";
 import GeneralUser from "./components/inforUser/GeneralUser";
@@ -26,21 +25,25 @@ import HistoryShipUser from "./components/inforUser/HistoryShipUser";
 import ItemOrderUser from "./components/inforUser/ItemOrderUser";
 import StatusItemUser from "./components/inforUser/StatusItemUser";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
-import OrderPage from "./page/orderPage/OrderPage";
 import { getAllOrderActions } from './redux/actions/orderActions'
+import ListOrderOfUser from "./page/admin/listOrderOfUser/ListOrderOfUser";
+import OrderPage from "./page/orderPage/OrderPage";
+import AllUser from "./page/admin/allUser/AllUser";
+
 function App() {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
   const [loading, setLoading] = useState(true); // Mặc định là `true`
 
+
   // Lấy thông tin người dùng nếu đã login
   useEffect(() => {
     if (isLogin) {
-      dispatch(getUserActions());
       dispatch(getAddressActions())
       dispatch(getAllOrderActions())
     }
   }, [isLogin]);
+
 
   // Gọi API sản phẩm
   useEffect(() => {
@@ -59,6 +62,8 @@ function App() {
 
     fetchProducts();
   }, [dispatch]);
+
+
 
   return (
     <>
@@ -94,9 +99,12 @@ function App() {
           {/* admin */}
           <Route path={Router.login_admin} element={<LoginAdmin />} />
           <Route path={Router.table} element={<TableManager />}>
+            <Route index element={<Allproduct />} />
             <Route path={Router.all_product} element={<Allproduct />} />
             <Route path={Router.post_product} element={<AddProduct />} />
             <Route path={Router.update_product} element={<UpdateProduct />} />
+            <Route path={Router.order_product} element={<ListOrderOfUser />} />
+            <Route path={Router.all_user} element={<AllUser />} />
           </Route>
         </Routes>
       )}

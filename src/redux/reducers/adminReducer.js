@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FaLeaf } from "react-icons/fa";
+import Cookies from "js-cookie"; // Thư viện lưu cookie
 const adminReducer = createSlice({
   name: "admin",
   initialState: {
     payload: {},
     msg: '',
     isLogin: false,
-    token: ''
+    token: '',
+    name: ''
   },
   reducers: {
     loginSuccess: (state, action) => {
@@ -14,19 +15,22 @@ const adminReducer = createSlice({
       state.msg = action.payload.msg
       state.isLogin = !!action.payload.accessToken
       state.token = action.payload.accessToken
-      localStorage.setItem('admin', action.payload.accessToken); // Lưu token vào localStorage
+      localStorage.setItem('token', action.payload.accessToken); // Lưu token vào localStorage
     },
     loginFailed: (state) => {
       state.payload = null
       state.token = null
     },
     logout: (state) => {
-      state.isLogin = false
-      state.token = localStorage.removeItem('admin')
+      state.isLogin = false;
+      localStorage.removeItem('token');
+    },
+    getInforAdminSuccess: (state, action) => {
+      state.name = action.payload
     }
   },
 });
 
-export const { loginSuccess, loginFailed, logout } = adminReducer.actions;
+export const { loginSuccess, loginFailed, logout, getInforAdminSuccess } = adminReducer.actions;
 
 export default adminReducer.reducer;

@@ -19,7 +19,7 @@ const ItemOrderUser = () => {
             <div className='flex flex-col mbl:flex-row mbl:justify-start mbl:items-center mbl:gap-6'>
               <span className='font-bold mbl:text-xl'>{item?.orderItem?.name}</span>
               <span className='text-slate-500'>x{item?.orderItem?.quantity}</span>
-              <span className='text-xs text-slate-400 mbl:text-lg '>{formatPrice(item?.orderItem.price)} vnd</span>
+              <span className='text-xs text-slate-400 mbl:text-lg '>{formatPrice(item?.orderItem?.price)} vnd</span>
             </div>
 
             <div className='w-[200px] mbl:w-full'>
@@ -51,10 +51,10 @@ const ItemOrderUser = () => {
             </div>
 
             <div className='flex flex-col'>
-              <span className='text-sm flex flex-col'>
-                Trạng thái đơn hàng:
-                <span className={`font-bold ${item?.isPaid ? 'text-blue-500' : 'text-red-600'}`}>{item?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
-                <span className={`font-bold ${item?.isDelivered ? 'text-blue-600' : 'text-yellow-500'}`}>{item?.isDelivered ? 'Đã giao' : 'Đã lấy hàng'}</span>
+              <span className='text-sm cursor-pointer flex flex-col'>
+                <span className='font-bold'>Trạng thái đơn hàng:</span>
+                <span className={`font-bold text-center ${item?.isPaid ? 'text-blue-500' : 'text-red-600'}`}>{item?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
+                <span className={`font-bold text-center ${item?.isDelivered ? 'text-white p-1 rounded-xl bg-blue-500 ' : 'text-white bg-red-500 p-1 rounded-xl'}`}>{item?.isDelivered ? 'Đã xác nhận' : 'Chưa xác nhận'}</span>
               </span>
             </div>
 

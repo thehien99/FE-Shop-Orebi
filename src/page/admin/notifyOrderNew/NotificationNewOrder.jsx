@@ -15,7 +15,6 @@ const NotificationNewOrder = () => {
   const navigate = useNavigate();
   const [flag, setFlag] = useState(false);
   const dropdownRef = useRef(null); // Dùng để kiểm tra bấm ngoài danh sách
-
   useEffect(() => {
     // Load trạng thái "đã đọc" từ LocalStorage khi component mount
     dispatch(loadReadState());
@@ -65,6 +64,8 @@ const NotificationNewOrder = () => {
 
   // Lọc thông báo chưa đọc
   const unreadNotiCount = noti.filter((item) => !readIds.includes(item.id)).length;
+  console.log(unreadNotiCount)
+
 
   return (
     <div ref={dropdownRef} >

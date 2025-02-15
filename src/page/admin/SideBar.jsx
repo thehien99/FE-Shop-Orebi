@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import icon from "../../icons/icons"
 
 
@@ -13,7 +13,7 @@ const SideBar = () => {
 
   return (
     <div className="sidebar p-6 xs:p-2">
-      <div className="name text-center border-b-2 p-2"> Xin Chào, Hiển</div>
+      <div className="name text-center border-b-2 p-2"> Xin Chào</div>
       <div className="list_siderbar mt-10">
         <div className="px-4 xs:w-full lg:flex lg:justify-center lg:items-center">
           <ul className="flex flex-col gap-10 text-lg font-normal xs:text-[16px]">

@@ -44,7 +44,6 @@ const OrderPage = () => {
 
   const handleOrder = async () => {
     const order = await orderProductApi({ clearValueNull, userId: userId, shippingAddressId: addressId })
-    console.log(order)
     if (order.msg === 'Create success') {
       Swal.fire({
         title: "Đặt đơn hàng thành công",
@@ -130,7 +129,7 @@ const OrderPage = () => {
               COD
             </span>
           </span>
-          <button onClick={handleOrder} className='p-2 border-2 bg-blue-700 text-white rounded-lg'>Đặt hàng</button>
+          <button onClick={handleOrder} className='p-2 border-2 bg-blue-700 text-white rounded-lg active:bg-red-700'>Đặt hàng</button>
         </div>
       </div>
     </div>

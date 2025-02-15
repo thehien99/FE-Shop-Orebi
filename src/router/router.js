@@ -6,7 +6,6 @@ const Router = {
   payment: 'payment',
   historyShip: 'historyShip',
   itemOrder: 'itemOrder',
-  statusItem: 'statusItem',
   detail_product: 'detail/:id',
   login: 'login',
   about: 'about',

@@ -133,12 +133,6 @@ const DetailProduct = () => {
             <span className='text-slate-500'>
               Fits large; we recommend ordering half a size down
             </span>
-            <ul className='grid grid-cols-4 gap-3'>
-              <li className='p-2 border text-center text-xl rounded-lg cursor-pointer hover:bg-slate-400 '>
-                {data?.size}
-              </li>
-            </ul>
-
 
             <div className='relative'>
               <span>Số lượng</span>

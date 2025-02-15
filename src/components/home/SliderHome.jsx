@@ -1,12 +1,8 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-// import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { banner } from '../../asset/img';
 import { Link } from 'react-router-dom';
@@ -33,27 +29,27 @@ const SliderHome = () => {
     }
   ]
   return (
-    <div className='w-full h-full2'>
+    <div className='w-full h-full'>
       <Swiper
         spaceBetween={30}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper !w-full"
       >
         {banner?.map((item, idx) => {
           return (
-            <SwiperSlide key={idx}>
-              <Link to={'/'}>
-                <img src={item?.img} alt="" />
-              </Link>
+            <SwiperSlide key={idx}
+              className='w-[10px]'
+            >
+              <img src={item?.img} alt="" className='!max-w-fit' />
             </SwiperSlide>
-          )
+          );
         })}
       </Swiper>
+
       <div className=' py-6 border-b-2 xs:p-6'>
         <ul className='flex justify-around items-center xs:text-[0.6rem] xs:gap-4'>
           {sliderSub.map((item, index) => {

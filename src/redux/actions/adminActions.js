@@ -23,7 +23,6 @@ export const getAlluserAdminActions = () => async (dispatch) => {
 export const getInforAdminActions = () => async (dispatch) => {
   try {
     const res = await getUserApi()
-    console.log('admin', res)
     dispatch(getInforAdminSuccess(res))
   } catch (error) {
     console.log(error)

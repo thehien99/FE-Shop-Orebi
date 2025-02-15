@@ -9,6 +9,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Carousels = ({ options }) => {
 
   const dataImg = useSelector(state => state.product.product)
+  console.log(dataImg)
   const navigate = useNavigate()
 
   const settings = {
@@ -51,53 +52,9 @@ const Carousels = ({ options }) => {
 
   return (
     <div className={`slider-container w-full`}>
-      <Slider {...settings} className={`${options != '1' ? 'bestseller' : ''}`}>
-        {
-          options === '1' ?
-            dataImg?.map((item, idx) => {
-              return (
-                <div onClick={() => handleNextPage(item)} key={idx} className="w-full ps-6 cursor-pointer">
-                  <div className="relative w-[98%] xs:w-full mbl:w-full h-full ">
+      {
 
-                    { /* hình*/}
-                    <img src={item?.image[0]} alt="" className="w-full h-[348px]   object-cover" />
-                    <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
-                      <div className="flex flex-col gap-2">
-                        <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'} text-xl`}>
-                          {item?.name}
-                        </div>
-                        <div className="text-slate-400">
-                          Giá: {formatPrice(item?.price)}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-            :
-            dataImg?.map((item, index) => {
-              return (
-                <div onClick={() => handleNextPage(item)} key={index} className="w-full ps-6 cursor-pointer">
-                  <div className="relative w-[98%] xs:w-full mbl:w-full h-full">
-
-
-                    <img src={item?.image[0]} alt="" className="w-full h-[348px] object-cover" />                      <div className="border p-6 bg-[#ffffff]">
-                      <div className="flex flex-col gap-2">
-                        <div className={`font-bold ${(item?.name)?.length > '15' && 'lg:truncate'} text-xl`}>
-                          {item?.name}
-                        </div>
-                        <div className="text-slate-400">
-                          Giá {formatPrice(item?.price)}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-        }
-      </Slider >
+      }
     </div >
   );
 }

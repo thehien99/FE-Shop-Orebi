@@ -70,6 +70,7 @@ export const TableCart = ({ cartProduct }) => {
     },
   ];
 
+
   useEffect(() => {
     const totalPriceSum = totalProduct.reduce((sum, product) => {
       // Đảm bảo priceProduct là một số trước khi cộng
@@ -101,10 +102,14 @@ export const TableCart = ({ cartProduct }) => {
   }, [data, selectedRows, toggleCleared]);
 
   const handleOderPage = () => {
-    navigate(`/${Router.order_page}`, { state: { selectedRows: selectedRows } })
+    if (selectedRows.length > 0) {
+      navigate(`/${Router.order_page}`, { state: { selectedRows: selectedRows } })
+    } else {
+      alert("Vui lòng chọn ít nhất một sản phẩm để đặt hàng.");
+    }
   }
 
-  
+
   return (
     <div>
       {cartProduct.length === 0 ? (

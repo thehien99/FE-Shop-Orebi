@@ -36,9 +36,10 @@ const ContentShop = () => {
       fetch()
     }
   }, [param, allProduct])
+
   return (
 
-    <div className='productShop flex flex-col gap-10 w-full h-full'>
+    <div className='productShop flex flex-col gap-[8rem] w-full h-full'>
       {loading &&
         <CircleLoader
           color="#d411ff"

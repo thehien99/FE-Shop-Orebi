@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from '../../lib/utils';
 const ProductDetailShop = ({ img, name, price, description, id, totalSock }) => {
-  console.log(totalSock)
+
   const navigate = useNavigate()
   const uppercaseFrist = description?.charAt(0).toUpperCase() + description.slice(1)
 

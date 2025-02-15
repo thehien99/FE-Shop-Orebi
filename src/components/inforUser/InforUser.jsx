@@ -10,10 +10,9 @@ import { getAddressActions } from '../../redux/actions/authActions'
 const InforUser = () => {
   const menuInfo = [
     { id: '1', path: 'general_user', name: 'Thông tin chung của bạn' },
-    { id: '2', path: 'payment', name: 'Phương thức thanh toán' },
-    { id: '3', path: 'historyShip', name: 'Lịch sử giao hàng' },
+    // { id: '2', path: 'payment', name: 'Phương thức thanh toán' },
+    // { id: '3', path: 'historyShip', name: 'Lịch sử giao hàng' },
     { id: '4', path: 'itemOrder', name: 'Các đơn hàng đã đặt' },
-    { id: '5', path: 'statusItem', name: 'Trạng thái đơn hàng' }
   ]
   //đăng nhập mới cho dô
   const isLogin = useSelector(state => state.auth?.isLogin)

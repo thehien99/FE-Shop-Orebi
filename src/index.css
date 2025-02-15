@@ -18,19 +18,24 @@ body {
   border-radius: 100%;
   display: none;
 }
+
 div.bestseller button {
   display: none !important;
 }
+
 .slick-prev {
   left: 10px !important;
 }
+
 .slick-next {
   right: 10px !important;
 }
+
 .slider_detail .slick-arrow {
   top: 39% !important;
   right: 25px !important;
 }
+
 /* .slider_detail .slick-prev {
   left: 10px !important;
 }  */
@@ -39,12 +44,15 @@ div.bestseller button {
   div.bestseller button {
     display: block !important;
   }
+
   .slick-prev {
     left: -13% !important;
   }
+
   .slick-next {
     right: -13% !important;
   }
+
   .slick-arrow {
     top: 35% !important;
     background-color: #cccc !important;
@@ -54,15 +62,20 @@ div.bestseller button {
     border-radius: 0px !important;
     font-size: 10px;
   }
+
   .slider_detail .slick-next {
     right: 0% !important;
   }
+
   .slider_detail .slick-prev {
     left: 0% !important;
   }
-
-  
 }
+
+.swiper-slide {
+  width: fit-content;
+}
+
 
 @layer base {
   :root {
@@ -100,6 +113,7 @@ div.bestseller button {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -140,6 +154,7 @@ div.bestseller button {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

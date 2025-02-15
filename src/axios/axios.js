@@ -1,6 +1,5 @@
 import axios from "axios";
-import Cookies from "js-cookie"; // Thư viện lưu cookie
-import { Navigate } from "react-router-dom";
+
 
 export const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_KEY,
@@ -44,7 +43,7 @@ axiosClient.interceptors.response.use(
 
     const originalRequest = error.config //api đầu tiên gây ra lỗi
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true //Đánh dấu các api đã được thử lại
 
       if (!localStorage.getItem('token')) {

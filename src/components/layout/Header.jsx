@@ -47,9 +47,8 @@ const Header = () => {
           <img src={image} alt="" />
         </div>
         <div className='text-lg text-slate-500 font-medium '>
-
-          {/* reponsive */}
-          <div className={`hidden xs:flex mbl:block`}>
+          {/*icon header reponsive */}
+          <div className={`hidden xs:flex mbl:block mbs:block`}>
             <Sheet>
               <SheetTrigger>
                 <IoMenu className='text-red-500 text-4xl' />
@@ -75,7 +74,7 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 50 }} // Thiết lập animation với spring
           >
-            <div className='xs:hidden mbl:hidden  flex justify-center items-center gap-8'>
+            <div className='xs:hidden mbl:hidden mbs:hidden xxl:text-2xl flex justify-center items-center gap-8'>
               {menuHeader?.map((item) => {
                 return <NavLink
                   className={({ isActive }) => (isActive ? 'text-black underline' : 'hover:underline hover:text-black')}

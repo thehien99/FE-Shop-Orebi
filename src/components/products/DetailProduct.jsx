@@ -90,10 +90,10 @@ const DetailProduct = () => {
 
   return (
     <div className='product_detail w-full h-full p-6'>
-      <div className='grid grid-cols-2 mbl:grid-cols-1 gap-8 h-full'>
+      <div className='grid grid-cols-2 md:grid-cols-1 mbl:grid-cols-1 gap-8 h-full'>
 
         <div className='detail_img h-full w-full'>
-          <div className=' flex flex-row justify-end mbl:flex-col-reverse gap-3'>
+          <div className=' flex flex-row justify-end md:flex-row-reverse mbl:flex-col-reverse gap-3'>
             <div className='w-[9%] mbl:w-[15%] flex flex-col mbl:flex-row gap-3'>
               {data?.productImg?.image?.map((item, idx) => {
                 return (
@@ -110,14 +110,14 @@ const DetailProduct = () => {
                   {data.totalSock < 0 &&
                     <div className='p-3 border-2 rounded-md text-center font-bold text-2xl text-red-600 bg-slate-200 absolute w-full top-1/2'>Tạm hết hàng</div>
                   }
-                  <img className='rounded-md w-full mbl:w-full h-[550px] object-cover' src={item} alt="" />
+                  <img className='img_product rounded-md w-full mbl:w-full h-[550px] object-cover' src={item} alt="" />
                 </div>
               )
             })}
           </div>
         </div>
 
-        <div className='detail_more flex flex-col gap-10 w-[60%] mbl:w-full'>
+        <div className='detail_more md:w-full flex flex-col gap-10 w-[60%] mbl:w-full'>
           <div className='name_item price_item flex flex-col gap-3'>
             <div className='name_item flex flex-col'>
               <span className='text-xl font-bold'>{data?.name}</span>
@@ -157,7 +157,7 @@ const DetailProduct = () => {
           </div>
 
           <div className='description flex flex-col'>
-            <span className='text-xl font-medium'>Mô tả:</span>
+            <span className='text-xl font-medium md:w-full'>Mô tả:</span>
             {data?.description}
           </div>
         </div>

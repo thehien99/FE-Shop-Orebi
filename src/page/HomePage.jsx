@@ -26,9 +26,9 @@ const HomePage = () => {
         </div>
       }
 
-      <div>
+      {/* <div>
         <Banner />
-      </div>
+      </div> */}
 
       {allProducts?.length > 1 &&
         <div className='xs:mt-2'>

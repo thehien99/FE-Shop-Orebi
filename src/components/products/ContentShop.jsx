@@ -39,7 +39,7 @@ const ContentShop = () => {
 
   return (
 
-    <div className='productShop flex flex-col gap-[8rem] w-full h-full'>
+    <div className='productShop flex flex-col w-full h-full'>
       {loading &&
         <CircleLoader
           color="#d411ff"

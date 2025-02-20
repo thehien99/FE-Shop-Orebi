@@ -65,14 +65,23 @@ module.exports = {
 			}
 		},
 		screens: {
+			xxl: {
+				min: '1536px'
+			},
 			xl: {
-				max: '1279px'
+				max: '1280px'
 			},
 			lg: {
 				max: '1024px'
 			},
 			md: {
 				max: '768px'
+			},
+			mds: {
+				max: '599px'
+			},
+			mbs: {
+				max: '480px'
 			},
 			mbl: {
 				max: '431px'

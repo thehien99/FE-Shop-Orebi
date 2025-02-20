@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BannerOfDetail = ({ img, name }) => {
+const   BannerOfDetail = ({ img, name }) => {
   return (
     <div className='text-center p-5 w-full h-full'>
       <span className='text-2xl font-medium'>Explore the {name}</span>
@@ -8,7 +8,7 @@ const BannerOfDetail = ({ img, name }) => {
         <img src={img ? img[0] : img} alt="" className=' object-scale-down' />
       </div>
       <div className='text-2xl flex-col p-6 gap-6 font-medium flex justify-center items-center'>
-        <div className='w-1/2 mbl:w-full'>
+        <div className='w-1/2 mbl:w-full md:w-full mbl:text-xl'>
           The stitched overlays on the upper add heritage style, durability and support.
           {
             img &&

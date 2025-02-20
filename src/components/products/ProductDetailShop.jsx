@@ -23,12 +23,12 @@ const ProductDetailShop = ({ img, name, price, description, id, totalSock }) => 
 
       <div className='w-full h-full relative'>
         <div className='border'>
-          <img src={img[0]} alt="" className='w-full h-[300px] object-cover' />
+          <img src={img[0]} alt="" className='w-full h-[300px] object-cover xxl:object-contain xxl:h-full' />
         </div>
-        <div className='flex flex-col gap-3 py-3'>
-          <h2 className={`text-xl w-full font-bold lg:text-sm ${name.length > 13 && 'truncate md:truncate lg:truncate'}`}>{name}</h2>
-          <span className='text-slate-500'>{uppercaseFrist}</span>
-          <span className='text-black'>Giá: {formatPrice(price)}</span>
+        <div className='flex flex-col gap-3 py-3 xxl:gap-5 xxl:py-7'>
+          <h2 className={`text-xl w-full font-bold lg:text-sm xxl:text-[30px] ${name.length > 13 && 'truncate md:truncate lg:truncate'}`}>{name}</h2>
+          <span className='text-slate-500 xxl:text-2xl'>{uppercaseFrist}</span>
+          <span className='text-black xxl:text-2xl'>Giá: {formatPrice(price)}</span>
         </div>
       </div>
     </div>

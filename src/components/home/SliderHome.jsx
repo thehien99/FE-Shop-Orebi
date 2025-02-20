@@ -44,7 +44,7 @@ const SliderHome = () => {
             <SwiperSlide key={idx}
               className='w-[10px]'
             >
-              <img src={item?.img} alt="" className='!max-w-fit' />
+              <img src={item?.img} alt="" className='w-full' />
             </SwiperSlide>
           );
         })}

@@ -58,7 +58,7 @@ const Home = () => {
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 60 }}
     >
-      <div className='container relative'>
+      <div className='relative'>
         <div className={` ${scrollPosition >= 100 ? 'fixed z-20 w-full top-0 bg-white' : ''}`}>
           <div className='border-b-2'>
             <Header />

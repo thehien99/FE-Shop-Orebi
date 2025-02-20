@@ -1,9 +1,8 @@
 
 import { image } from "../asset/img"
 import icon from "../icons/icons"
-import { Link, Route, useLocation, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Router from '../router/router'
-import { useEffect } from "react"
 import FormLogin from "../components/formLogin/FormLogin"
 const Login = () => {
   const loginLeft = [
@@ -25,17 +24,12 @@ const Login = () => {
   ]
   const { TiTick } = icon
   const navigate = useNavigate()
-  const handleHome = () => {
-    navigate(Router.home)
-  }
-  return (
-    <div className="w-full xs:h-full login flex text-white">
 
-      <div className="w-[27%]  lg:w-1/2 md:hidden p-12 flex flex-col gap-12 bg-[rgb(38,38,38)]">
+  return (
+    <div className="w-full h-full xs:h-full mds:w-full login flex text-white">
+
+      <div className="w-fit h-[660px] lg:w-fit md:hidden p-10 flex flex-col gap-12 bg-[rgb(38,38,38)]">
         <div className="flex flex-col gap-5">
-          <Link to={Router.home}>
-            <img src={image} alt="" className="w-[30%] h-full bg-white " />
-          </Link>
           <div className="flex flex-col gap-2">
             <div className="text-2xl font-bold">
               Stay sign in for more
@@ -62,10 +56,8 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="w-[70%] lg:w-1/2 xs:w-full">
-        <div className="hidden xs:flex xs:justify-center xs:items-center xs:translate-y-[190%]" onClick={handleHome}>
-          <img src={image} alt="" className="w-1/3" />
-        </div>
+      <div className="w-full lg:w-full md:w-fit mds:w-full xs:w-full">
+
         <FormLogin />
       </div>
     </div>

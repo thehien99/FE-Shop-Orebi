@@ -15,7 +15,7 @@ body {
   width: 50px !important;
   height: 50px !important;
   z-index: 10 !important;
-  border-radius: 100%;
+  border-radius: 0%;
   display: none;
 }
 
@@ -24,11 +24,11 @@ div.bestseller button {
 }
 
 .slick-prev {
-  left: 10px !important;
+  left: 24px !important;
 }
 
 .slick-next {
-  right: 10px !important;
+  right: 7px !important;
 }
 
 .slider_detail .slick-arrow {
@@ -69,6 +69,20 @@ div.bestseller button {
 
   .slider_detail .slick-prev {
     left: 0% !important;
+  }
+}
+
+@media (max-width:640px) {
+  .list_product_more {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width:1090px) {
+  .img_product {
+    object-fit: contain;
+    height: 100%;
   }
 }
 

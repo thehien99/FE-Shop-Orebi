@@ -15,9 +15,9 @@ const OrderPage = () => {
   const [total, setTotal] = useState(0)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const userId = useSelector((state) => state.getUser.userInfo.id)
-  const addressId = useSelector((state) => state.getUser.getAddress.id)
-  const addressShip = useSelector((state) => state.getUser.getAddress.address)
+  const userId = useSelector((state) => state.getUser.userInfo?.id)
+  const addressId = useSelector((state) => state.getUser.getAddress?.id)
+  const addressShip = useSelector((state) => state.getUser.getAddress?.address)
 
   useEffect(() => {
     const totalProduct = selectedRows.reduce((sum, product) => {
@@ -41,8 +41,11 @@ const OrderPage = () => {
     return newItem
   })
 
-
+  console.log(addressId)
   const handleOrder = async () => {
+    if (!addressId) {
+      Swal.fire('Vui lòng thêm địa chỉ giao hàng')
+    }
     const order = await orderProductApi({ clearValueNull, userId: userId, shippingAddressId: addressId })
     if (order.msg === 'Create success') {
       Swal.fire({
@@ -73,9 +76,9 @@ const OrderPage = () => {
     }
   }
   return (
-    <div className='oder_page w-full h-full  '>
-      <div className='text-center p-6 text-2xl font-bold text-red-500'>Xác nhận đơn hàng đặt</div>
-      <div className=' w-1/2 h-full border-2 rounded-xl translate-x-1/2 shadow-2xl mbl:w-fit mbl:translate-x-[14%] xs:w-fit xs:translate-x-[3%]'>
+    <div className='order_page w-full h-full  '>
+      <div className='order_page_sub text-center p-6 text-2xl font-bold text-red-500'>Xác nhận đơn hàng đặt</div>
+      <div className='order_page_table w-1/2 h-full border-2 rounded-xl translate-x-1/2 shadow-2xl mbl:w-1/2  xs:w-fit'>
         {selectedRows?.map((item, idx) => {
           return (
             <div key={idx} className='border-b-2 p-5 flex gap-6 justify-around items-center'>
@@ -83,16 +86,16 @@ const OrderPage = () => {
                 <img src={item.productImg?.image} className='w-[80px]' alt="" />
               </div>
               <div className='flex flex-col gap-1'>
-                <span className='font-bold'>{item?.name}</span>
+                <span className='name_product font-bold'>{item?.name}</span>
                 <span className='text-sm'>{item?.size[0] ? item?.size[0] : 'không có size'}</span>
                 <span className='text-lg'>
                   <span className='text-sm pe-2'>Số lượng: </span>
-                  x{item?.quanti}
+                  {item?.quanti}
                 </span>
               </div>
-              <div>
+              {/* <div>
                 <span className='font-bold'>{formatPrice(item?.priceProduct)}vnd</span>
-              </div>
+              </div> */}
             </div>
           )
         })}

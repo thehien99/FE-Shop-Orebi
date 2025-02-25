@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeAllProduct, removeProduct } from '../../redux/reducers/cartReducer';
 import { useNavigate } from 'react-router-dom';
 import Router from '../../router/router';
+import Swal from 'sweetalert2'
+
 
 export const TableCart = ({ cartProduct }) => {
   const dispatch = useDispatch()
@@ -105,7 +107,7 @@ export const TableCart = ({ cartProduct }) => {
     if (selectedRows.length > 0) {
       navigate(`/${Router.order_page}`, { state: { selectedRows: selectedRows } })
     } else {
-      alert("Vui lòng chọn ít nhất một sản phẩm để đặt hàng.");
+      Swal.fire("Bạn vui lòng chọn ít nhất 1 sản phẩm");
     }
   }
 

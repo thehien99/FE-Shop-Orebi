@@ -8,9 +8,11 @@ const adminReducer = createSlice({
     isLogin: false,
     token: null,
     name: "",
+    role: ''
   },
   reducers: {
     loginSuccess: (state, action) => {
+      state.role = action.payload.role;
       state.payload = action.payload;
       state.msg = action.payload.msg;
       state.isLogin = !!action.payload.accessToken;
@@ -23,7 +25,8 @@ const adminReducer = createSlice({
     },
     logout: (state) => {
       state.isLogin = false;
-      localStorage.removeItem("token"); // Xóa token khi logout
+      state.token = null;
+      localStorage.removeItem('token'); // Xóa token trong localStorage khi logout
     },
     getInforAdminSuccess: (state, action) => {
       state.name = action.payload;

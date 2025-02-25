@@ -86,6 +86,39 @@ div.bestseller button {
   }
 }
 
+@media (max-width:787px) {
+  .order_page .name_product {
+    font-size: 15px;
+  }
+}
+
+@media (max-width:511px) {
+  .order_page .order_page_table {
+    translate: 0% -1%;
+  }
+
+  .order_page .order_page_sub {
+    padding: 1rem;
+  }
+}
+
+@media (max-width:492px) {
+  .search {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search .input_search {
+    width: 100%;
+  }
+
+  .order_page .order_page_table {
+    width: 100%;
+    translate: -50%;
+  }
+}
+
 .swiper-slide {
   width: fit-content;
 }

@@ -39,7 +39,7 @@ function Allproduct() {
       name: "Actions",
       button: 'true',
       cell: (row) => (
-        <UpdateProduct id={row?.id} />
+        <UpdateProduct id={row?.id} keyEdit='edit' />
       ),
     },
     {
@@ -111,6 +111,7 @@ function Allproduct() {
 
 
   const handleDeleteProduct = async (id) => {
+    console.log(id)
     const dataAfterClear = data.filter((item) => item.id !== id)
     setData(dataAfterClear)
     const res = await deleteProductApi(id)

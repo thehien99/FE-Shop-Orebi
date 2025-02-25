@@ -190,7 +190,9 @@ export const deleteProductApi = (id) => {
       const response = await axiosClient({
         method: 'delete',
         url: 'deleteProduct',
-        data: { id: id }
+        data: {
+          id: id
+        }
       })
       resolve(response)
     } catch (error) {
@@ -237,6 +239,25 @@ export const updateIsDeliveredApi = (id) => {
         data: {
           productId: id,
           isDelivered: true
+        }
+      })
+      resolve(response)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const updateProductApi = (productId, payload) => {
+  console.log(productId, payload)
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosClient({
+        method: 'post',
+        url: 'updateProduct',
+        data: {
+          productId,
+          payload
         }
       })
       resolve(response)

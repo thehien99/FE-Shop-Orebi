@@ -1,8 +1,6 @@
 
-import { image } from "../asset/img"
 import icon from "../icons/icons"
 import { Link, useNavigate } from "react-router-dom"
-import Router from '../router/router'
 import FormLogin from "../components/formLogin/FormLogin"
 const Login = () => {
   const loginLeft = [
@@ -28,7 +26,7 @@ const Login = () => {
   return (
     <div className="w-full h-full xs:h-full mds:w-full login flex text-white">
 
-      <div className="w-fit h-[660px] lg:w-fit md:hidden p-10 flex flex-col gap-12 bg-[rgb(38,38,38)]">
+      <div className="w-fit h-[655px] lg:w-fit md:hidden p-10 flex flex-col gap-12 bg-[rgb(38,38,38)]">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <div className="text-2xl font-bold">

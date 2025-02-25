@@ -21,8 +21,8 @@ const Search = () => {
   }
 
   return (
-    <div className={`mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center ${location.pathname === '/order_page' && 'xs:hidden'}`}>
-      <div className={`${isLogin ? 'w-1/2' : 'w-full'} xs:w-full mbl:w-full'`}>
+    <div className={`search mx-6 p-6 xs:ms-1 flex justify-between xs:justify-between mbl:flex-col mbl:gap-4 items-center ${location.pathname === '/order_page' && 'xs:block'}`}>
+      <div className={`${isLogin ? 'w-1/2' : 'w-full'} xs:w-full mbl:w-full input_search `}>
         <Input placeholder='Search Product' search='search' />
       </div>
       <div className='cursor-pointer flex justify-center items-center gap-4 xs:absolute xs:top-7 xs:right-[93px] xs:items-center '>

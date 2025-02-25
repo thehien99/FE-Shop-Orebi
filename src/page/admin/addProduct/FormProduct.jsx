@@ -4,32 +4,25 @@ import InputAdmin from '../InputAdmin';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-const FormProduct = ({ valid, payload, setPayload }) => {
+const FormProduct = ({ valid, payload, setPayload, keyEdit }) => {
   const dataOneProduct = useSelector(state => state.product.productOne)
-  const location = useLocation()
-  const [size, setSize] = useState(location.state === 'Đăng sản phẩm' ? payload?.size : dataOneProduct?.size)
-  const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-
-
-  useEffect(() => {
-    setPayload((prev) => ({
-      ...prev,
-      size: size
-    }))
-  }, [size])
-
-  const handleSetSize = (e) => {
-    setSize(e.target.value)
-  }
 
   return (
     <form className='flex flex-col gap-5'>
       <label htmlFor="">
         Tên sản phẩm
-        <InputAdmin payload={payload.name} setPayload={setPayload} keyPayload='name' dataOneProduct={dataOneProduct?.name} />
+        <InputAdmin
+          keyEdit={keyEdit}
+          payload={payload.name}
+          setPayload={setPayload}
+          keyPayload='name'
+          dataOneProduct={dataOneProduct?.name}
+        />
+
         {valid &&
           <i className='text-red-400'>{valid.name} </i>
         }
+
       </label>
 
       <div className=' flex items-center gap-4 justify-between'>
@@ -40,7 +33,12 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             }
           </div>
           <div className='w-full'>
-            <InputAdmin payload={payload.price} setPayload={setPayload} keyPayload='price' dataOneProduct={dataOneProduct?.price} />
+            <InputAdmin
+              keyEdit={keyEdit}
+              payload={payload.price}
+              setPayload={setPayload}
+              keyPayload='price'
+              dataOneProduct={dataOneProduct?.price} />
           </div>
         </div>
         <div className=' flex flex-col gap-3'>
@@ -50,14 +48,26 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             }
           </div>
           <div className=''>
-            <InputAdmin payload={payload?.quantity} setPayload={setPayload} keyPayload='quantity' dataOneProduct={dataOneProduct?.quantity} />
+            <InputAdmin
+              payload={payload?.quantity}
+              setPayload={setPayload}
+              keyPayload='quantity'
+              dataOneProduct={dataOneProduct?.quantity}
+              keyEdit={keyEdit}
+            />
           </div>
         </div>
 
         <div className=' flex flex-col gap-3'>
           <div>Tồn kho</div>
           <div className=''>
-            <InputAdmin payload={payload?.totalSock} setPayload={setPayload} keyPayload='totalSock' dataOneProduct={dataOneProduct?.totalSock} />
+            <InputAdmin
+              payload={payload?.totalSock}
+              setPayload={setPayload}
+              keyPayload='totalSock'
+              dataOneProduct={dataOneProduct?.totalSock}
+              keyEdit={keyEdit}
+            />
           </div>
         </div>
 
@@ -80,11 +90,11 @@ const FormProduct = ({ valid, payload, setPayload }) => {
           ))}
         </select>
       </div> */}
-
+      {/* 
       <div className='flex flex-col gap-2'>
         <div>Màu sản phẩm</div>
         <SelectColor payload={payload.color} setPayload={setPayload} keyPayload='color' />
-      </div>
+      </div> */}
 
       <div className='description flex flex-col gap-2 '>
         <span >Chi tiết sản phẩm
@@ -93,16 +103,17 @@ const FormProduct = ({ valid, payload, setPayload }) => {
             <i className='ms-2 text-red-500'>{valid.description}</i>
           }
         </span>
-        <textarea name="" value={payload?.description} onChange={(e) => setPayload((prev) => (
-          {
-            ...prev,
-            description: e.target.value
-          }
-        ))} id="" className='border rounded-lg p-2 resize-none' />
+        <textarea name=""
+          value={payload.description}
+          onChange={(e) => setPayload((prev) => (
+            {
+              ...prev,
+              description: e.target.value
+            }
+          ))} id="" className='border rounded-lg p-2 resize-none'
+        />
 
       </div>
-
-
     </form >
   )
 }

@@ -14,11 +14,20 @@ const AddProduct = () => {
     color: '',
     size: '',
     quantity: '',
-    imageId: '',
+    imageId: [],
     totalSock: '' || 0
   })
   const [valid, setValid] = useState([])
   const dispatch = useDispatch()
+
+  //hàm reset imaged
+  const resetImages = () => {
+    setPayload(prev => ({
+      ...prev,
+      imageId: []
+    }));
+  }
+
   const handleAdd = () => {
     new Promise(async (resolve, reject) => {
       try {
@@ -30,7 +39,10 @@ const AddProduct = () => {
             data: payload
           })
           if (res.code === 200) {
+
+            // Dispatch action để lấy lại danh sách sản phẩm
             dispatch(getAllProductActions())
+
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -45,7 +57,7 @@ const AddProduct = () => {
               color: '',
               size: '',
               quantity: '',
-              imageId: '',
+              imageId: [],
               totalSock: ''
             })
             resolve(res)
@@ -57,7 +69,7 @@ const AddProduct = () => {
     })
   }
   return (
-    <div className='p-8 lg:p-[4px] lg:px-6 w-full h-full bg-slate-200'>
+    <div className='p-8 lg:p-[4px] lg:px-6 w-full h-full'>
       <div className='text-2xl font-bold'>
         Thêm sản phẩm
       </div>
@@ -66,9 +78,13 @@ const AddProduct = () => {
           <FormProduct payload={payload} setPayload={setPayload} valid={valid} />
         </div>
         <div className='border rounded-lg bg-[#ffff] shadow-lg p-6 lg:p-5'>
-          <AddImage payload={payload} setPayload={setPayload} />
+          <AddImage resetImages={resetImages} payload={payload} setPayload={setPayload} valid={valid} />
           <div className='flex justify-center'>
-            <button type="button" className="mt-10 border bg-blue-400 font-bold text-white hover:bg-slate-300 hover:text-red-400  p-3 rounded-xl" onClick={handleAdd}>Đăng sản phẩm</button>
+            <button type="button"
+              className="mt-10 border bg-blue-400 font-bold text-white hover:bg-slate-300 hover:text-red-400  p-3 rounded-xl"
+              onClick={handleAdd}>
+              Đăng sản phẩm
+            </button>
           </div>
         </div>
       </div>

@@ -7,9 +7,11 @@ const authReducer = createSlice({
     payloadRegister: {},
     isLogin: false,
     token: null,
+    role: ''
   },
   reducers: {
     loginSuccess: (state, action) => {
+      state.role = action.payload.role
       state.token = action.payload.accessToken;
       state.payload = action.payload.msg;
       state.isLogin = !!action.payload.accessToken;

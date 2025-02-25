@@ -21,6 +21,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [flag, setFlag] = useState(false)
+  const [open, setOpen] = useState(false)
   const nameAdmin = useSelector(state => state.admin.name?.detail?.name)
   const roleAdmin = useSelector(state => state.admin.name?.detail?.role)
 
@@ -35,25 +36,33 @@ const Header = () => {
   const handleToggle = () => {
     setFlag(!flag)
   }
+
+  // Hàm đóng sidebar khi chọn mục
+  const handleCloseSidebar = () => {
+    setOpen(false)
+  }
+
   return (
     <div className='header_admin p-2.5 flex justify-around items-center gap-9 border-b-2 bg-slate-100 shadow-lg '>
 
       {/* responsive */}
       <div className='hidden md:block'>
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger>
             <IoMenu className='text-3xl text-center' />
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetDescription>
-                <SideBar />
+              <SheetDescription >
+                <SideBar closeSidebar={handleCloseSidebar} />
               </SheetDescription>
             </SheetHeader>
           </SheetContent>
         </Sheet>
       </div>
+
       <NotificationNewOrder />
+
       <div className='relative'>
         <div className='message cursor-pointer w-fit text-2xl p-2 bg-slate-200 rounded-full border-slate-600 lg:text-xl' onClick={handleToggle}>
           {<FaRegMessage />}
@@ -65,6 +74,7 @@ const Header = () => {
           </div>
         }
       </div>
+
       <div className='name flex flex-col'>
         <span className='text-xl font-bold'>
           {nameAdmin}

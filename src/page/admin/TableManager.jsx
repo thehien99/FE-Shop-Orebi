@@ -24,6 +24,7 @@ const TableManager = () => {
       dispatch(getInforAdminActions())
     }
   }, [isLogin])
+
   return (
     <div className='table_mananger w-full h-full flex'>
       <div className='side_bar w-[20%] md:hidden lg:w-1/3 h-screen bg-slate-50 shadow-2xl'>

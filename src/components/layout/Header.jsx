@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { image } from '../../asset/img'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Router from '../../router/router'
@@ -24,6 +24,7 @@ const Header = () => {
   const navigation = useNavigate()
   const dispatch = useDispatch()
   const isLogin = useSelector(state => state.auth.isLogin)
+  const [open, setOpen] = useState(false)
   const handleHome = () => {
     navigation(Router.home)
   }
@@ -39,6 +40,9 @@ const Header = () => {
     }
   };
 
+  const handleCloseMenu = () => {
+    setOpen(false)
+  }
 
   return (
     <div className='mx-6 p-6'>
@@ -49,7 +53,7 @@ const Header = () => {
         <div className='text-lg text-slate-500 font-medium '>
           {/*icon header reponsive */}
           <div className={`hidden xs:flex mbl:block mbs:block`}>
-            <Sheet>
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger>
                 <IoMenu className='text-red-500 text-4xl' />
               </SheetTrigger>
@@ -57,7 +61,9 @@ const Header = () => {
                 <SheetHeader>
                   {menuHeader?.map((item) => {
                     return <div key={item}>
-                      <NavLink to={`/${item?.name}`} className={`hover:text-black hover:underline  ${item?.idx === 1 && 'text-black underline'}`} >
+                      <NavLink to={`/${item?.name}`}
+                        onClick={handleCloseMenu}
+                        className={`hover:text-black hover:underline ${item?.idx === 1 && 'text-black underline'}`} >
                         {item?.name}
                       </NavLink>
                     </div>
@@ -74,7 +80,7 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 50 }} // Thiết lập animation với spring
           >
-            <div className='xs:hidden mbl:hidden mbs:hidden xxl:text-2xl flex justify-center items-center gap-8'>
+            <div className=' xs:hidden mbl:hidden mbs:hidden flex justify-center items-center gap-8'>
               {menuHeader?.map((item) => {
                 return <NavLink
                   className={({ isActive }) => (isActive ? 'text-black underline' : 'hover:underline hover:text-black')}

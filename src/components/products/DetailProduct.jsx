@@ -22,7 +22,7 @@ const DetailProduct = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const { total } = location.state
-  console.log(total)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [id])

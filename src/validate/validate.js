@@ -44,6 +44,10 @@ export const validateProduct = (payload, setValid) => {
           newErr.description = 'Vui lòng điền'
         }
         break;
+      case 'imageId':
+        if (!payload.imageId || payload.imageId.length < 1) {
+          newErr.imageId = 'Không được bỏ trống'
+        }
       default:
         break;
     }

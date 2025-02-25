@@ -3,7 +3,7 @@ import { axiosClient } from '../../../axios/axios'
 import ClipLoader from "react-spinners/ClipLoader";
 
 
-const AddImage = ({ setPayload }) => {
+const AddImage = ({ setPayload, valid }) => {
   const [image, setImg] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -45,9 +45,13 @@ const AddImage = ({ setPayload }) => {
     }))
   }, [image])
 
+
   return (
     <div className='flex flex-col gap-4 w-full' >
       <div>Upload Image</div>
+      {valid &&
+        <i className='text-red-400'>{valid.imageId} </i>
+      }
       <div className='w-full'>
         <input type="file" className='border w-full' id='file' accept='image/*' onChange={handleUpImage} />
       </div>
@@ -61,7 +65,11 @@ const AddImage = ({ setPayload }) => {
           return (
             <>
               <img key={index} src={item} alt="" className='w-1/3 h-auto object-cover ms-2' />
-              <button onClick={() => handleRemoveImg(index)} type="button" className="border w-[5%] p-1 h-fit bg-red-400 text-white hover:text-black">x</button>
+              <button onClick={() => handleRemoveImg(index)}
+                type="button"
+                className="border w-[5%] p-1 h-fit bg-red-400 text-white hover:text-black">
+                x
+              </button>
             </>
 
           )

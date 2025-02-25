@@ -62,7 +62,7 @@ const FormLogin = ({ options }) => {
 
 
   return (
-    <Card className={`${options ? 'w-1/2 translate-x-1/2 translate-y-1/2 shadow-2xl xs:m-3 xs:translate-y-1/2 xs:border-2 xs:shadow-2xl' : 'mx-auto max-w-sm  translate-y-[5%] md:translate-x-1/2 md:translate-y-[15%] mds:translate-x-0 xs:translate-x-0 xs:translate-y-20'}`}>
+    <Card className={`${options ? 'w-full translate-y-1/2 shadow-2xl xs:translate-y-1/2 xs:border-2 xs:shadow-2xl' : 'mx-auto max-w-sm  translate-y-[5%] md:translate-x-1/2 md:translate-y-[15%] mds:translate-x-0 xs:translate-x-0 xs:translate-y-20'}`}>
       <CardHeader className="space-y-1">
         {options ? (
           <div>
@@ -112,16 +112,6 @@ const FormLogin = ({ options }) => {
                   onChange={handleChange}  // Cập nhật giá trị khi thay đổi
                 />
                 User
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="choice"
-                  value="admin"
-                  checked={selectedOption === 'admin'}  // Kiểm tra nếu option2 được chọn
-                  onChange={handleChange}  // Cập nhật giá trị khi thay đổi
-                />
-                Amdin
               </label>
             </div>
           }

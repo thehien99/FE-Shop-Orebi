@@ -5,7 +5,7 @@ import Router from '../../router/router'
 import Header from '../layout/Header'
 import Search from '../home/Search'
 import Dropmenu from './component/Dropmenu'
-import { getAddressActions } from '../../redux/actions/authActions'
+import { getAddressActions, getUserActions } from '../../redux/actions/authActions'
 
 const InforUser = () => {
   const menuInfo = [
@@ -23,6 +23,7 @@ const InforUser = () => {
   const pathname = location.pathname.replace("/infor_user/", "")
   const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(getUserActions())
     dispatch(getAddressActions())
   }, [isLogin])
   return (

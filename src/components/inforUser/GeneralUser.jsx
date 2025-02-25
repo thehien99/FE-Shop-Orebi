@@ -7,14 +7,18 @@ import Swal from 'sweetalert2'
 
 const GeneralUser = () => {
   const dispatch = useDispatch()
-  const userInfo = useSelector(state => state.getUser?.userInfo)
+  const userInfo = useSelector(state => state.getUser.userInfo)
   const addressInfo = useSelector(state => state.getUser?.getAddress)
   const [payload, setPayload] = useState({
-    name: userInfo?.name || '',
+    name: userInfo.name || '',
     phone: addressInfo?.phone ? addressInfo?.phone : '',
     address: addressInfo?.address ? addressInfo?.address : ''
   })
+  const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    dispatch(getUserActions)
+  }, [userInfo, addressInfo])
 
   const handleCreate = async (e) => {
     const res = await createAddress({
@@ -33,11 +37,14 @@ const GeneralUser = () => {
         timer: 1500
       });
       dispatch(getUserActions())
+      setOpen(false)
     }
 
   }
+
   const handleUpdate = async (e) => {
     const res = await updateUser({
+      id: userInfo.id,
       name: e.name,
       phone: e.phone,
       address: e.address
@@ -52,6 +59,7 @@ const GeneralUser = () => {
         timer: 1500
       });
       dispatch(getUserActions())
+      setOpen(false)
     }
   }
 
@@ -59,7 +67,7 @@ const GeneralUser = () => {
     <div className='general_user'>
       <div className='flex flex-col gap-6 text-2xl'>
         <div className='flex gap-4 border-b-2 p-2 items-center'>Họ tên:
-          <span className='text-lg text-[#FF0000]'>{payload?.name ? payload.name : 'không có'}</span>
+          <span className='text-lg text-[#FF0000]'>{payload?.name ? payload.name : userInfo.name}</span>
         </div>
         <div className='flex gap-4 border-b-2 p-2 items-center'>
           SĐT:
@@ -73,7 +81,7 @@ const GeneralUser = () => {
         </div>
       </div>
       <div className='float-end'>
-        <EditInfoUser payload={payload} setPayload={setPayload} onCreate={handleCreate} onUpdate={handleUpdate} />
+        <EditInfoUser open={open} setOpen={setOpen} address={addressInfo} name={userInfo.name} payload={payload} setPayload={setPayload} onCreate={handleCreate} onUpdate={handleUpdate} />
       </div>
     </div>
   )

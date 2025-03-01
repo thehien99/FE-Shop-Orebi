@@ -3,12 +3,12 @@ export const banner = [
   {
     idx: 1, img: 'https://orebishopping.reactbd.com/static/media/bannerImgOne.cc70f00d1512cb1f97f6.webp'
   },
-  // {
-  //   idx: 2, img: 'https://orebishopping.reactbd.com/static/media/bannerImgTwo.d93152138c5c9da3de58.webp'
-  // },
-  // {
-  //   idx: 3, img: 'https://orebishopping.reactbd.com/static/media/bannerImgThree.cdd63ff84acf53a73a0d.webp'
-  // }
+  {
+    idx: 2, img: 'https://orebishopping.reactbd.com/static/media/bannerImgTwo.d93152138c5c9da3de58.webp'
+  },
+  {
+    idx: 3, img: 'https://orebishopping.reactbd.com/static/media/bannerImgThree.cdd63ff84acf53a73a0d.webp'
+  }
 ]
 
 export const carouselImg = [

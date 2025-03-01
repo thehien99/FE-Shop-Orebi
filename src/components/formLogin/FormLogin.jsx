@@ -60,9 +60,14 @@ const FormLogin = ({ options }) => {
     setSelectedOption(e.target.value); // Cập nhật state với giá trị đã chọn
   };
 
+  const handleKeyPass = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e)
+    }
+  }
 
   return (
-    <Card className={`${options ? 'w-full translate-y-1/2 shadow-2xl xs:translate-y-1/2 xs:border-2 xs:shadow-2xl' : 'mx-auto max-w-sm  translate-y-[5%] md:translate-x-1/2 md:translate-y-[15%] mds:translate-x-0 xs:translate-x-0 xs:translate-y-20'}`}>
+    <Card onKeyDown={handleKeyPass} className={`${options ? 'w-full translate-y-1/2 shadow-2xl xs:translate-y-1/2 xs:border-2 xs:shadow-2xl' : 'mx-auto max-w-sm  translate-y-[5%] md:translate-x-1/2 md:translate-y-[15%] mds:translate-x-0 xs:translate-x-0 xs:translate-y-20'}`}>
       <CardHeader className="space-y-1">
         {options ? (
           <div>
@@ -91,8 +96,8 @@ const FormLogin = ({ options }) => {
           </div>
           }
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <InputLogin id="email" type="email" placeholder="Email" payload={payload.emailOrPhone} setPayload={setPayload} keyPayload='emailOrPhone' required />
+            <Label htmlFor="email">Login Name</Label>
+            <InputLogin id="email" type="text" placeholder="Login name" payload={payload.emailOrPhone} setPayload={setPayload} keyPayload='emailOrPhone' required />
             {valid && <i className='text-sm text-red-500'>{valid.emailOrPhone}</i>}
           </div>
           <div className="space-y-2">

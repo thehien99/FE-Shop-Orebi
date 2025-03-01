@@ -5,8 +5,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { banner } from '../../asset/img';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import icon from '../../icons/icons';
+import Router from '../../router/router';
 
 
 const SliderHome = () => {
@@ -28,7 +29,9 @@ const SliderHome = () => {
             <SwiperSlide key={idx}
               className='w-[10px]'
             >
-              <img src={item?.img} alt="" className='w-full' />
+              <NavLink to={`/${Router.shop}`}>
+                <img src={item?.img} alt="" className='w-full' />
+              </NavLink>
             </SwiperSlide>
           );
         })}

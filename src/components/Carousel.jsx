@@ -67,7 +67,7 @@ const Carousels = ({ options }) => {
                   <div className="relative w-[98%] xs:w-full mbl:w-full h-full ">
 
                     { /* hình*/}
-                    <img src={item?.image[0]} alt="" className="w-full h-[348px]   object-cover" />
+                    <img src={item?.image[0]} alt="" className="img_carousel w-full h-[348px] object-cover" />
                     <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
                       <div className="flex flex-col gap-2">
                         <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'} text-xl`}>
@@ -89,7 +89,7 @@ const Carousels = ({ options }) => {
                   <div className="relative w-[98%] xs:w-full mbl:w-full h-full ">
 
                     { /* hình*/}
-                    <img src={item?.image[0]} alt="" className="w-full h-[348px]   object-cover" />
+                    <img src={item?.image[0]} alt="" className="img_carousel w-full h-[348px] object-cover" />
                     <div className="border p-3 bg-[#ffffff] lg:w-full lg:h-full">
                       <div className="flex flex-col gap-2">
                         <div className={`font-bold ${(item?.name)?.length > '10' && 'lg:truncate'} text-xl`}>

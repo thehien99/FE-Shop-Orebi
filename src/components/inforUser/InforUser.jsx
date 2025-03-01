@@ -35,8 +35,10 @@ const InforUser = () => {
       <div className='infor_user w-full h-full p-6'>
 
         <div className='border-2 rounded-xl shadow-2xl'>
+
+          {/* responsive mobile */}
           <div className='mbl:flex  mbl:justify-around mbl:items-center mbl:border-b-2'>
-            <div className='hidden mbl:block mbl:mt-3'> <Dropmenu menuInfo={menuInfo} /></div>
+            <div className='hidden mbs:block mbl:mt-3 mbs:text-center mbs:py-2'> <Dropmenu menuInfo={menuInfo} /></div>
             {
               menuInfo?.map((item) => {
                 return (
@@ -50,15 +52,17 @@ const InforUser = () => {
               })
             }
           </div>
+
+
           <div className='flex w-full'>
-            <div className='w-[40%] flex flex-col gap-8 p-8 border-e-2 mbl:hidden'>
+            <div className='sidebar_info w-[40%] flex flex-col gap-8 p-8 border-e-2 mbs:hidden'>
               {menuInfo?.map((item) => {
                 return <NavLink to={item?.path} key={item.id} className={`border-b-2 p-3 hover:bg-blue-400 ${item.path === pathname && 'bg-slate-300 text-teal-700 font-bold'}`}>
                   {item?.name}
                 </NavLink>
               })}
             </div>
-            <div className='w-full p-8'>
+            <div className='w-full'>
               <Outlet />
             </div>
           </div>

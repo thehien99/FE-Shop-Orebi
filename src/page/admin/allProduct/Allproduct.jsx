@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 import { deleteProductApi, getAllProductApi } from "../../../api/api";
 import UpdateProduct from "../updateProduct/UpdateProduct";
+import { useLocation } from "react-router-dom";
 
 function Allproduct() {
 
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [data, setData] = useState([]);
-
+  const location = useLocation()
   const columns = [
     {
       name: 'Tên sản phẩm',

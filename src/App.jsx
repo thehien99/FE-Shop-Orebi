@@ -36,6 +36,7 @@ function App() {
   const isLogin = useSelector((state) => state.auth.isLogin);
   const [loading, setLoading] = useState(true); // Mặc định là `true`
 
+  
   // Lấy thông tin người dùng nếu đã login
   useEffect(() => {
     if (isLogin) {

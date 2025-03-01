@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import SliderHome from '../components/home/SliderHome'
 import ProductHome from '../components/home/ProductHome'
 import BannerHome from '../components/home/BannerHome'
-import Banner from '../components/home/Banner'
 import { useSelector } from 'react-redux'
 
 

@@ -4,6 +4,7 @@ import { EditInfoUser } from './EditInfoUser'
 import { createAddress, updateUser } from '../../api/api'
 import { getAddressActions, getUserActions } from '../../redux/actions/authActions'
 import Swal from 'sweetalert2'
+import { useLocation } from 'react-router-dom'
 
 const GeneralUser = () => {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ const GeneralUser = () => {
     address: addressInfo?.address ? addressInfo?.address : ''
   })
   const [open, setOpen] = useState(false)
+
 
   useEffect(() => {
     dispatch(getUserActions)
@@ -64,7 +66,7 @@ const GeneralUser = () => {
   }
 
   return (
-    <div className='general_user'>
+    <div className='general_user px-8 py-8'>
       <div className='flex flex-col gap-6 text-2xl'>
         <div className='flex gap-4 border-b-2 p-2 items-center'>Họ tên:
           <span className='text-lg text-[#FF0000]'>{payload?.name ? payload.name : userInfo.name}</span>
@@ -80,7 +82,7 @@ const GeneralUser = () => {
         <div>
         </div>
       </div>
-      <div className='float-end'>
+      <div className='float-end py-3'>
         <EditInfoUser open={open} setOpen={setOpen} address={addressInfo} name={userInfo.name} payload={payload} setPayload={setPayload} onCreate={handleCreate} onUpdate={handleUpdate} />
       </div>
     </div>

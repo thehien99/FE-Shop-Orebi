@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 
 export function EditInfoUser({ payload, setPayload, onCreate, onUpdate, open, setOpen, address, name }) {
 
-  console.log(address)
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>

@@ -1,24 +1,17 @@
-let ws;
+// frontend/src/socket.js
+import { io } from 'socket.io-client';
 
-export const connectWebSocket = (url, onMessage) => {
-  ws = new WebSocket(url);
+// Kết nối đến backend (http://localhost:8080)
+const socket = io('http://localhost:8080', {
+    autoConnect: true,
+    withCredentials: true,  // Đảm bảo cookie hoặc session được gửi đi nếu cần
+    transports: ['websocket'],  // Dùng WebSocket để kết nối (không dùng polling)
+});
 
-  ws.onopen = () => {
-    console.log("WebSocket connected");
-  };
+// Lắng nghe sự kiện kết nối
+socket.on('connect', () => {
+    console.log('Đã kết nối đến WebSocket');
+});
 
-  ws.onmessage = (event) => {
-    const message = JSON.parse(event.data);
-    onMessage(message);
-  };
 
-  ws.onclose = () => {
-    console.log("WebSocket disconnected, retrying...");
-  };
-
-  return ws;
-};
-
-export const closeWebSocket = () => {
-  if (ws) ws.close();
-};
+export default socket;

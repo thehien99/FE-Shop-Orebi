@@ -10,7 +10,7 @@ import {
 import FormProduct from '../addProduct/FormProduct'
 import { memo, useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllProductActions, getOneProductActions } from "../../../redux/actions/productActions"
+import { getOneProductActions } from "../../../redux/actions/productActions"
 import { updateProductApi } from "../../../api/api"
 import Swal from "sweetalert2"
 

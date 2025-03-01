@@ -1,98 +1,96 @@
-import React, { memo, useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addNotification, markAsRead, loadReadState } from '../../../redux/reducers/notiAdminReducer';
-import { connectWebSocket } from '../../../socket.io/SocketIo';
-import { useNavigate } from 'react-router-dom';
-import Router from '../../../router/router';
+import React, { useState, useEffect } from 'react';
+import socket from '../../../socket.io/SocketIo';  // Kết nối socket
 import icon from '../../../icons/icons';
+import { axiosClient } from '../../../axios/axios';
+import { NavLink } from "react-router-dom";
+import Router from '../../../router/router';
 
 const NotificationNewOrder = () => {
+  const [orders, setOrders] = useState([]); // Lưu danh sách đơn hàng đã đọc
+  const [unreadOrders, setUnreadOrders] = useState([]); // Lưu danh sách đơn hàng chưa đọc
   const { LuBellRing } = icon;
-  const dispatch = useDispatch();
-  const noti = useSelector((state) => state.notification.notifications); // Danh sách thông báo
-  const listNoti = useSelector((state) => state.getOrder.listOrderOfUser);
-  const readIds = useSelector((state) => state.notification.readIds); // Danh sách ID đã đọc
-  const navigate = useNavigate();
-  const [flag, setFlag] = useState(false);
-  const dropdownRef = useRef(null); // Dùng để kiểm tra bấm ngoài danh sách
-  useEffect(() => {
-    // Load trạng thái "đã đọc" từ LocalStorage khi component mount
-    dispatch(loadReadState());
+  const [open, setOpen] = useState(false); // Điều khiển trạng thái mở/đóng bảng thông báo
 
-    const ws = connectWebSocket("ws://localhost:8080", (message) => {
-      if (message.type === "NEW_ORDER") {
-        dispatch(addNotification(message.data));
-      }
+  // Lắng nghe sự kiện 'newOrder' từ Socket.IO
+  useEffect(() => {
+    socket.on('newOrder', (order) => {
+      console.log('Đơn hàng mới:', order);
+      // Thêm đơn hàng mới vào đầu danh sách đơn hàng chưa đọc
+      setUnreadOrders((prevOrders) => [order, ...prevOrders]); // Đưa đơn hàng mới vào đầu
     });
 
     return () => {
-      ws.close();
-    };
-  }, [dispatch]);
-
-  // Đóng danh sách khi bấm Esc hoặc bấm ra ngoài
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setFlag(false);
-      }
-    };
-
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setFlag(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClickOutside);
+      socket.off('newOrder'); // Dọn dẹp khi component bị unmount
     };
   }, []);
 
-  const handleClearNoti = () => {
-    setFlag(!flag);
-    dispatch(markAsRead()); // Đánh dấu là đã đọc
+  // Khi có đơn hàng mới, gọi API lấy tên người dùng
+  useEffect(() => {
+    const fetchUserNames = async () => {
+      // Mảng để lưu tên người dùng sau khi API trả về
+      const fetchedNames = [];
+
+      for (let order of unreadOrders) {
+        try {
+          const res = await axiosClient({
+            method: 'get',
+            url: 'getUserOrder', // API để lấy thông tin người dùng
+            params: { id: order.userId },
+          });
+
+          // Lưu tên người dùng vào mảng fetchedNames
+          fetchedNames.push({ userName: res.name });
+        } catch (error) {
+          console.error('Lỗi khi lấy thông tin người dùng:', error);
+        }
+      }
+
+      // Sau khi tất cả tên người dùng được lấy xong, cập nhật state orders mà không thay đổi unreadOrders
+      setOrders((prevOrders) => [...fetchedNames, ...prevOrders]); // Đưa các đơn hàng mới vào đầu
+    };
+
+    // Chạy hàm khi `unreadOrders` thay đổi
+    if (unreadOrders.length > 0) {
+      fetchUserNames();
+    }
+  }, [unreadOrders]); // Thực hiện mỗi khi `unreadOrders` thay đổi
+
+  // Hàm mở/đóng thông báo
+  const hanldeOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      // Khi admin bấm vào chuông, chỉ xoá danh sách đơn hàng chưa đọc
+      setUnreadOrders([]); // Xoá danh sách đơn hàng chưa đọc khi mở thông báo
+    }
   };
-
-  const handleNextPageNoti = () => {
-    navigate(`${Router.order_product}`);
-  };
-
-  // Lọc thông báo chưa đọc
-  const unreadNotiCount = noti.filter((item) => !readIds.includes(item.id)).length;
-  console.log(unreadNotiCount)
-
 
   return (
-    <div ref={dropdownRef} >
-      <div onClick={handleClearNoti} className="relative cursor-pointer hover:bg-emerald-400 hover:rounded-full p-2">
-        <LuBellRing className='text-2xl' />
-        {unreadNotiCount > 0 && (
-          <div className="absolute text-sm font-bold text-red-600 border-2 rounded-full bg-cyan-300 p-1 bottom-4 left-8">
-            {unreadNotiCount}
-          </div>
-        )}
-      </div>
-      {flag && (
-        <div className="w-[500px] mbl:w-[80%] mbl:top-16 xs:right-14 xs:top-[70px] absolute right-15 top-12 bg-[#ffffff] shadow-2xl rounded-xl z-10 h-[200px] overflow-y-scroll p-2">
-          {listNoti.map((item) => (
-            <div
-              onClick={handleNextPageNoti}
-              key={item?.id}
-              className="p-2 cursor-pointer border-b-2 w-full flex items-start text-lg"
-            >
-              <i className="text-red-500">{item?.user.name}</i>
-              <span className="ms-2 font-serif">đã đặt 1 đơn hàng mới</span>
-            </div>
-          ))}
+    <div className="relative w-[270px]">
+      <div className="cursor-pointer relative" onClick={hanldeOpen}>
+        <LuBellRing className="text-3xl" />
+        {/* Hiển thị số lượng đơn hàng chưa đọc */}
+        <div className="absolute top-[-15px] left-[11px] border-2 w-fit px-2 rounded-full text-red-400 bg-blue-600 font-bold">
+          {unreadOrders.length} {/* Hiển thị tổng số đơn hàng chưa đọc */}
         </div>
+      </div>
+
+      {/* Hiển thị thông báo khi bảng thông báo mở */}
+      {open && (
+        <ul className="absolute top-8 z-10 bg-slate-400 border-2 p-4 w-full h-[150px] overflow-y-scroll">
+          {orders.map((user, index) => (
+            <NavLink to={Router.order_product} key={index} className="py-2">
+              <li className="border-b-2 text-lg p-1">
+                <span className="me-2 text-orange-700 font-extrabold">
+                  {user.userName}
+                </span>
+                <span className="text-white">đã đặt hàng</span>
+              </li>
+            </NavLink>
+          ))}
+        </ul>
       )}
     </div>
   );
 };
 
-export default memo(NotificationNewOrder);
+export default NotificationNewOrder;

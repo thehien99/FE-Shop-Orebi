@@ -21,12 +21,11 @@ const Login = () => {
     },
   ]
   const { TiTick } = icon
-  const navigate = useNavigate()
 
   return (
-    <div className="w-full h-full xs:h-full mds:w-full login flex text-white">
+    <div className="w-full h-full xs:h-full mds:w-full login flex text-white p-8">
 
-      <div className="w-fit h-[655px] lg:w-fit md:hidden p-10 flex flex-col gap-12 bg-[rgb(38,38,38)]">
+      <div className="bg_login w-fit h-full lg:w-fit md:hidden p-10 flex flex-col gap-12 bg-[rgb(38,38,38)]">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <div className="text-2xl font-bold">
@@ -55,7 +54,6 @@ const Login = () => {
       </div>
 
       <div className="w-full lg:w-full md:w-fit mds:w-full xs:w-full">
-
         <FormLogin />
       </div>
     </div>

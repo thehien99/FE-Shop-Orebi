@@ -9,21 +9,21 @@ const ItemOrderUser = () => {
     dispatch(getAllOrderActions())
   }, [dispatch])
   return (
-    <div className='list-order w-full h-[500px] overflow-y-scroll '>
+    <div className='list-order w-full h-[500px]  overflow-y-scroll '>
 
       {listOrder.map((item, idx) => {
         return (
-          <div className='border-b-2 p-3 mbl:w-full flex gap-3 justify-around mbl:flex-col' key={idx}>
-            <img src={item?.image} className='w-[50px] object-cover mbl:h-1/2 mbl:w-1/3' alt="hinhf" />
+          <div className='border-b-2 p-3 mbl:w-full flex gap-3 list-order-sub justify-around mbl:flex-col' key={idx}>
+            <img src={item?.image} className='w-[50px] object-contain mbl:h-1/2 mbl:w-1/3' alt="hinhf" />
 
             <div className='flex flex-col mbl:flex-row mbl:justify-start mbl:items-center mbl:gap-6'>
               <span className='font-bold mbl:text-xl'>{item?.orderItem?.name}</span>
               <span className='text-slate-500'>x{item?.orderItem?.quantity}</span>
-              <span className='text-xs text-slate-400 mbl:text-lg '>{formatPrice(item?.orderItem?.price)} vnd</span>
+              <span className='text-xs text-slate-400 mbl:text-lg '>{formatPrice(item?.orderItem?.price)}</span>
             </div>
 
-            <div className='w-[200px] mbl:w-full'>
-              <span className=' text-sm flex flex-col font-medium'>
+            <div className='w-[200px] order_address mbl:w-full'>
+              <span className='text-sm flex flex-col font-medium'>
                 Địa chỉ giao hàng:
                 <i className='font-bold overflow-hidden break-words text-cyan-600'>{item?.address} đường số 3 khu phố 1 phường tam bình thủ đức hồ chí minh</i>
               </span>
@@ -50,11 +50,11 @@ const ItemOrderUser = () => {
               </span>
             </div>
 
-            <div className='flex flex-col'>
-              <span className='text-sm cursor-pointer flex flex-col'>
-                <span className='font-bold'>Trạng thái đơn hàng:</span>
-                <span className={`font-bold text-center ${item?.isPaid ? 'text-blue-500' : 'text-red-600'}`}>{item?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
-                <span className={`font-bold text-center ${item?.isDelivered ? 'text-white p-1 rounded-xl bg-blue-500 ' : 'text-white bg-red-500 p-1 rounded-xl'}`}>{item?.isDelivered ? 'Đã xác nhận' : 'Chưa xác nhận'}</span>
+            <div className='order_status flex flex-col'>
+              <span className='text-sm cursor-pointer flex flex-col text-center gap-1'>
+                <span className='font-bold'>Trạng thái:</span>
+                <span className={`font-bold text-center xl:text-[12px] ${item?.isPaid ? 'text-blue-500' : 'text-red-600'}`}>{item?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
+                <span className={`status_acpect font-bold text-center ${item?.isDelivered ? 'text-white p-1 rounded-xl bg-blue-500 ' : 'text-white bg-red-500 p-1 rounded-xl'}`}>{item?.isDelivered ? 'Đã xác nhận' : 'Chưa xác nhận'}</span>
               </span>
             </div>
 

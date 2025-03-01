@@ -27,6 +27,10 @@ const adminReducer = createSlice({
       state.isLogin = false;
       state.token = null;
       localStorage.removeItem('token'); // Xóa token trong localStorage khi logout
+      localStorage.removeItem('cart')
+      localStorage.removeItem('persist:admin')
+      localStorage.removeItem('persist:auth')
+
     },
     getInforAdminSuccess: (state, action) => {
       state.name = action.payload;

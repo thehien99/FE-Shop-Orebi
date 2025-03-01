@@ -35,6 +35,10 @@ const authReducer = createSlice({
       state.isLogin = false;
       state.payload = null;
       localStorage.removeItem("token"); // Xóa token khi logout
+      localStorage.removeItem('cart')
+      localStorage.removeItem('persist:admin')
+      localStorage.removeItem('persist:auth')
+
     },
   },
 });

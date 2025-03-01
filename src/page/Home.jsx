@@ -68,9 +68,9 @@ const Home = () => {
             {location.pathname !== '/login' && < Search />}
           </div>
         </div>
-        <div className='fixed bottom-6 z-30 right-6'>
+        {/* <div className='fixed bottom-6 z-30 right-6'>
           <Chat />
-        </div>
+        </div> */}
         <Outlet />
         <div className='bg-slate-200'>
           {location.pathname !== '/login' && <Footer />}

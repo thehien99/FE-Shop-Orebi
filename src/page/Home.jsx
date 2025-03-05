@@ -59,12 +59,12 @@ const Home = () => {
       transition={{ type: 'spring', stiffness: 400, damping: 60 }}
     >
       <div className='relative'>
-        <div className={` ${scrollPosition >= 100 ? 'fixed z-20 w-full top-0 bg-white' : ''}`}>
-          <div className='border-b-2'>
+        <div className={` ${scrollPosition >= 50 ? 'fixed z-20 w-full scroll-smooth top-0 bg-white' : ''}`}>
+          <div className={`border-2`}>
             <Header />
           </div>
 
-          <div className='bg-slate-300' >
+          <div className={`bg-slate-300 ${scrollPosition >= 50 && 'hidden'}`} >
             {location.pathname !== '/login' && < Search />}
           </div>
         </div>

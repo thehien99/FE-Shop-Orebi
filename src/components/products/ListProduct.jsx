@@ -13,7 +13,7 @@ const ListProduct = ({ allProducts }) => {
       {allProducts?.length === 0 && <div className='text-center'>Không có sản phẩm</div>}
 
       <div className='list_product_more grid grid-cols-3  lg:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 mbl:grid-cols-1 gap-5 xs:gap-16 w-full h-full relative'>
-        {allProducts?.map((item) => {
+        {allProducts && allProducts?.map((item) => {
           return (
             <div className='w-full h-full relative' key={item?.id}>
               {

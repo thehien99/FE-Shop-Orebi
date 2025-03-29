@@ -25,7 +25,7 @@ const authReducer = createSlice({
       state.token = action.payload.accessToken;
       localStorage.setItem("token", action.payload.accessToken);
       state.payloadRegister = action.payload.user.name;
-      state.isLogin = true;
+      state.isLogin = !!action.payload.accessToken;
     },
     registerFailed: (state) => {
       state.isLogin = false;

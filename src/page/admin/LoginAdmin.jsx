@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import FormLogin from "../../components/formLogin/FormLogin";
 
 const LoginAdmin = () => {
-  return <FormLogin options={"Admin Panel"} />;
+  return (
+    <div className="w-1/2">
+      <FormLogin options={"Admin Panel"} />
+    </div>
+  )
 };
 
 export default LoginAdmin;

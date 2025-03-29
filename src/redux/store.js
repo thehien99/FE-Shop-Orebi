@@ -26,7 +26,7 @@ import storage from "redux-persist/es/storage";
 const persitConfig = {
   key: "auth",
   storage: localStorage,
-  whitelist: ['isLogin'],
+  whitelist: ['auth', 'admin'],
   stateReconciler: autoMergeLevel2,
 };
 const authConfig = {
